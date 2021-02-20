@@ -1,13 +1,18 @@
 #pragma once
 
-namespace server {  namespace core
+
+/// <summary>
+///  상속 받아서 로직 구현해서 사용.
+/// </summary>
+namespace c2 { namespace server {  namespace core
 {
 	class session;
-	class user_interface
+	class i_user
 	{
 	public:
-		void recv_payload();
-		virtual ~user_interface();
+		i_user();
+		virtual ~i_user();
+		virtual void update_logic();
 
 	protected:
 		session* get_session();
@@ -15,5 +20,6 @@ namespace server {  namespace core
 	private:
 		session* owner;
 	};
-}
-}
+} // namespace core
+} // namespace server
+} // namespace c2

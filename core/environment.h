@@ -1,14 +1,13 @@
 #pragma once
 
-
-
-namespace server { namespace core
+namespace c2 { namespace server { namespace core
 {
 	namespace constant
 	{
-		constexpr uint16_t	port		{	};
-		constexpr uint16_t	ip			{	};
-		constexpr size_t	maximum_size{	};
+		constexpr uint16_t	port			{ 	};
+		constexpr uint16_t	ip				{ 	};
+		constexpr size_t	c_maximum_ccu	{ 64 };
+		constexpr size_t	c_maximum_size	{ 64 };
 	} // namespace constant
 
 	namespace global
@@ -18,18 +17,19 @@ namespace server { namespace core
 
 	namespace enumeration
 	{
-		enum class session_state
+		enum class e_session_state
 		{
-			initialized,
-			established,
-			closed,
-			state_max
+			INITIALIZED, 
+			ESTABLISHED,// 연결 후, user 할당 전
+			LOGINED,	// user 할당 이후
+			CLOSED,		// 
+			STATE_MAX,
 		};
 
 		enum server_core_error
-		{
-		};
+		{};
 	} // namespace enumeration
 
 } // namespace core
 } // namespace server
+} // namespace c2

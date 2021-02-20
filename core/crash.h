@@ -12,7 +12,7 @@ if ( is_true == false )		\
 
 #define crash_inline()			\
 {								\
-	size_t* hazard_ptr{};		\
+	hazard_ptr{};		\
 	*hazard_ptr = 0xDEAD;		\
 }					  
 
