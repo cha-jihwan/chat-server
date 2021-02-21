@@ -4,10 +4,10 @@ namespace c2 { namespace server { namespace core
 {
 	namespace constant
 	{
-		constexpr uint16_t	port			{ 	};
-		constexpr uint16_t	ip				{ 	};
-		constexpr size_t	c_maximum_ccu	{ 64 };
-		constexpr size_t	c_maximum_size	{ 64 };
+		constexpr uint16_t	c_port			{ 5500 };
+		extern const	 char* c_ip;//{ "127.0.0.1" };
+		constexpr size_t		c_maximum_ccu	{ 64 };
+		constexpr size_t		c_maximum_size	{ 64 };
 	} // namespace constant
 
 	namespace global

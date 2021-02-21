@@ -1,6 +1,6 @@
 #pragma once
 
-// 간단한 구현을 위해 환형큐는 담에...
+
 template <size_t N = 65536>
 class payload_buffer
 {
@@ -124,8 +124,7 @@ public:
 
 private:
 	uint8_t*	buffer;
-
-	size_t		read_head;
-	size_t		write_head;
+	uint32_t	read_head;
+	uint32_t	write_head;
 };
 

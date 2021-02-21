@@ -4,7 +4,7 @@ namespace c2 { namespace server { namespace core
 {
 	select_server::select_server() 
 		: listen_sock{ INVALID_SOCKET }
-		, ip{}, port{}
+		, c_ip{}, c_port{}
 		, generated_session_id{}
 	{}
 
@@ -75,9 +75,10 @@ namespace c2 { namespace server { namespace core
 		}
 
 		// bind()
-		SOCKADDR_IN serveraddr{ AF_INET, htons(server::core::constant::port),  };
-		serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
-		int retval = bind(listen_sock, (SOCKADDR*)&serveraddr, sizeof(serveraddr));
+		end_point end_point(constant::c_ip , constant::c_port);
+		//SOCKADDR_IN serveraddr{ AF_INET, htons(server::core::constant::port),  };
+		//serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
+		int retval = bind(listen_sock, end_point.get_as_sockaddr(), (int)end_point.size());
 		if (retval == SOCKET_ERROR)
 		{
 			printf("bind() error in initialize_core() err-code : %d", GetLastError());
@@ -135,7 +136,7 @@ namespace c2 { namespace server { namespace core
 			}
 			default:
 			{
-				printf("select() error : %d in try_accept()", GetLastError());
+				printf("select() error : %d in try_accept()\n", GetLastError());
 				break;
 			}
 		}
@@ -191,9 +192,13 @@ namespace c2 { namespace server { namespace core
 		SOCKADDR_IN sock_addr{};
 		int addr_len = sizeof(sock_addr);
 		SOCKET client_sock = accept(listen_sock, (SOCKADDR*)&sock_addr, &addr_len);
+		if (SOCKET_ERROR == client_sock)
+		{
+
+		}
 
 
-		// kick 처리
+		// 미구현 : kick 처리
 		if ( constant::c_maximum_ccu <= sock_matching_table.size() )
 		{
 			// kick 처리...
@@ -202,14 +207,21 @@ namespace c2 { namespace server { namespace core
 		}
 
 		
-		session* sess;
+		session* sess = session_pool->allocate();
+
+		crash_if_false(nullptr != sess);
 
 		sess->set_state(e_session_state::ESTABLISHED);
-
+		sess->set_socket(client_sock);
+		// ip, port
 		// sesion을 끄내고 
 		// session 추가
 		// user 할당 X
 		// 신규 처리
+	}
+
+	void select_server::release_session(SOCKET sock)
+	{
 	}
 
 } // namespace core

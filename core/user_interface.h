@@ -18,7 +18,7 @@ namespace c2 { namespace server {  namespace core
 		session* get_session();
 
 	private:
-		session* owner;
+		session* server;
 	};
 } // namespace core
 } // namespace server

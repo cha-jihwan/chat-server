@@ -23,7 +23,6 @@ private:
 
 
 
-
 template <typename T, size_t N>
 bounded_object_pool<T, N>::bounded_object_pool()
 {

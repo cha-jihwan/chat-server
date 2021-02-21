@@ -3,7 +3,7 @@
 
 namespace c2 { namespace server { namespace core
 {
-	i_user::i_user() : owner{}
+	i_user::i_user() : server{}
 	{
 	}
 

@@ -22,6 +22,8 @@ namespace c2 { namespace server { namespace core
 		void try_send_all_sessions();
 
 		void accept_new_session();
+		void release_session(SOCKET sock);
+		
 	protected:
 		// broadcast
 		// packet_type
@@ -30,8 +32,8 @@ namespace c2 { namespace server { namespace core
 
 	private:
 		SOCKET								listen_sock;
-		std::string							ip;
-		uint16_t							port;
+		std::string							c_ip;
+		uint16_t							c_port;
 		uint32_t							generated_session_id;
 
 		unordered_map<SOCKET, session*>		sock_matching_table;

@@ -17,6 +17,7 @@ namespace c2 { namespace server { namespace core
 		virtual void parse_payload();
 		void recv_payload();
 		void send_payload();
+		void request_send(const char* msg, size_t size);
 
 		// getter
 		SOCKET get_socket() const;
@@ -29,16 +30,17 @@ namespace c2 { namespace server { namespace core
 		void set_socket(SOCKET connected_sock);
 		void set_state(e_session_state state);
 		void set_user(i_user* i_user);
+		void set_server(select_server* server);
 
 	protected:
 		payload_buffer<65536>	recv_buffer;
+		i_user*					user;
+		select_server*			server;
 		payload_buffer<65536>	send_buffer;
 		SOCKET					sock;
 		e_session_state			state;
-		i_user*					user;
-		select_server*			owner;
-		string					ip;
-		uint16_t				port;
+		string					c_ip;
+		uint16_t				c_port;
 	};
 
 } // namespace core
