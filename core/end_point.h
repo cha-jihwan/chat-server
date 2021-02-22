@@ -10,11 +10,7 @@ namespace c2 { namespace server { namespace core
 		//end_point(const wstring& address, uint16_t port);
 		//end_point(const sockaddr& _sock_addr);
 		
-		constexpr size_t size() const
-		{
-			return sizeof(this->sock_addr);
-		}
-		
+		const size_t size() const;
 		sockaddr* get_as_sockaddr();
 		sockaddr_in* get_as_aockaddrin();
 		

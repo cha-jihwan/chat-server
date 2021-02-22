@@ -1,4 +1,4 @@
-#include "pre_compile.h"
+#include "../common/pre_compile.h"
 
 namespace c2 { namespace server { namespace core
 {

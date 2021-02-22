@@ -8,16 +8,18 @@ namespace c2 { namespace server { namespace core
 
 	class i_user;
 	class select_server;
+
+	//template<typeaneme T>
 	class session
 	{
 	public:
 		session();
 		virtual ~session();
-
 		virtual void parse_payload();
+
 		void recv_payload();
 		void send_payload();
-		void request_send(const char* msg, size_t size);
+		void pre_send(const char* msg, size_t size);
 
 		// getter
 		SOCKET get_socket() const;
@@ -34,15 +36,16 @@ namespace c2 { namespace server { namespace core
 
 	protected:
 		payload_buffer<65536>	recv_buffer;
-		i_user*					user;
-		select_server*			server;
 		payload_buffer<65536>	send_buffer;
+		//std::vector<T>	packets;
 		SOCKET					sock;
 		e_session_state			state;
-		string					c_ip;
-		uint16_t				c_port;
-	};
+		string					ip;
+		uint16_t				port;
 
+		i_user*					user;
+		select_server*			server;
+	};
 } // namespace core
 } // namespace server
 } // namespace c2

@@ -12,7 +12,7 @@ public:
 	bounded_object_pool();
 	T* allocate();
 	void free(T* obj);
-	constexpr size_t capacity();
+	const size_t capacity(); // c++14는 constexpr 지원이 좀 애매한듯?
 	const size_t size() const;
 	const bool empty() const;
 
@@ -64,7 +64,7 @@ void bounded_object_pool<T, N>::free(T* obj)
 }
 
 template <typename T, size_t N>
-constexpr size_t bounded_object_pool<T, N>::capacity()
+const size_t bounded_object_pool<T, N>::capacity()
 {
 	return objects.max_size();
 }

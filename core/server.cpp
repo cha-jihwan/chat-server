@@ -1,4 +1,4 @@
-#include "pre_compile.h"
+#include "../common/pre_compile.h"
 
 namespace c2 { namespace server { namespace core
 {
@@ -42,6 +42,7 @@ namespace c2 { namespace server { namespace core
 		// 윈속 초기화
 		if (false == initialize_core())
 		{
+			printf("select_server::initialize_core() ");
 			crash();
 		}
 
@@ -144,8 +145,10 @@ namespace c2 { namespace server { namespace core
 
 	void select_server::try_receive_all_sessions()
 	{
+		timeval tv{};
 		FD_SET read_set;
 		read_set.fd_count = 0;
+
 
 		for (const auto& kv : sock_matching_table)
 		{
@@ -153,7 +156,7 @@ namespace c2 { namespace server { namespace core
 			read_set.fd_count += 1;
 		}
 
-		if (1 <= select(read_set.fd_count, &read_set, nullptr, nullptr, nullptr))
+		if (1 <= select(read_set.fd_count, &read_set, nullptr, nullptr, &tv))
 		{
 			for (const auto& kv : sock_matching_table)
 			{
@@ -164,14 +167,14 @@ namespace c2 { namespace server { namespace core
 					crash_if_false(nullptr != sess);
 
 					sess->recv_payload();
-					sess->parse_payload();
+					//sess->parse_payload();
 				}
 			}
 		}
 		else
 		{
 			// SOCKET_ERROR 이면 에러.
-			// 0이면 ㄱㅊ
+			// 0이면 recv() 호출할 세션이 없다.
 		}
 	}
 
@@ -198,17 +201,19 @@ namespace c2 { namespace server { namespace core
 		}
 
 
+///////////////////////////////
 		// 미구현 : kick 처리
 		if ( constant::c_maximum_ccu <= sock_matching_table.size() )
 		{
 			// kick 처리...
 			// thread 만들어서 처리....
+			// 
+
 			return;
 		}
 
 		
 		session* sess = session_pool->allocate();
-
 		crash_if_false(nullptr != sess);
 
 		sess->set_state(e_session_state::ESTABLISHED);
@@ -222,6 +227,7 @@ namespace c2 { namespace server { namespace core
 
 	void select_server::release_session(SOCKET sock)
 	{
+		// session 제거
 	}
 
 } // namespace core

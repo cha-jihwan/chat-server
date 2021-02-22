@@ -1,4 +1,4 @@
-#include "pre_compile.h"
+#include "../common/pre_compile.h"
 
 namespace c2 { namespace server { namespace core
 {
@@ -22,17 +22,12 @@ namespace c2 { namespace server { namespace core
 	//	((sockaddr_in*)&sock_addr)->sin_port = htons(port);
 	//	InetPtonW(AF_INET, address.c_str(), &((sockaddr_in*)&sock_addr)->sin_addr);
 	//}
-
 	/*
-
-
 
 	end_point::end_point(const sockaddr & _sock_addr)
 	{
 		memcpy(&sock_addr, &_sock_addr, sizeof(sockaddr));
 	}
-
-
 	*/
 
 	std::string end_point::c_ip()
@@ -40,7 +35,7 @@ namespace c2 { namespace server { namespace core
 		return ::inet_ntoa(reinterpret_cast<sockaddr_in*>(&sock_addr)->sin_addr);
 	}
 
-
+	//
 	const std::string end_point::to_string()
 	{
 		return std::string(this->c_ip()) + ":" + std::to_string(this->c_port());
@@ -62,10 +57,10 @@ namespace c2 { namespace server { namespace core
 		return reinterpret_cast<sockaddr_in*>(&sock_addr);
 	}
 
-	//constexpr size_t end_point::size() const
-	//{
-	//	return sizeof(this->sock_addr);
-	//}
+	const size_t end_point::size() const
+	{
+		return sizeof(this->sock_addr);
+	}
 
 }// namespace core
 }// namespace server

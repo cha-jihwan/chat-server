@@ -1,11 +1,10 @@
-#include "pre_compile.h"
+#include "../common/pre_compile.h"
 
 
 namespace c2 { namespace server { namespace core
 {
 	i_user::i_user() : server{}
-	{
-	}
+	{}
 
 	i_user::~i_user()
 	{}
@@ -16,6 +15,7 @@ namespace c2 { namespace server { namespace core
 	}
 	void i_user::update_logic()
 	{}
+
 } // namespace core
 } // namespace server
 } // namespace c2
