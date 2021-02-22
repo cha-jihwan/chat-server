@@ -3,9 +3,10 @@
 
 int main()
 {
-	using namespace c2::server::core;
+	//using namespace c2::server::core; // for select server
+	using namespace c2::server::contents;
 
-	select_server server;
+	chat_server server;
 
 	server.initialize();
 

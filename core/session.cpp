@@ -3,7 +3,8 @@
 namespace c2 { namespace server { namespace core 
 {
 	using namespace enumeration;
-	session::session() 
+
+	session::session()
 		: state{ e_session_state::INITIALIZED }
 		, user{}, server{}
 		, sock{ INVALID_SOCKET }
@@ -28,19 +29,15 @@ namespace c2 { namespace server { namespace core
 		//crash_if_false();
 		recv_buffer.move_write_head(received_size);
 	}
-
+	
 	void session::parse_payload()
 	{
-		vector<packet> packets;
-		size_t parsed_size = i_parser<packet>::parse_payload(recv_buffer.get_header(), recv_buffer.get_use_size(), packets);
+		// 전역 packet 큐
+		static vector<null_packet> packets;
 
-/*
-		vector<message_view> v;
-		P::parse_payload(
-		recv_buffer.rewind();
-*/
+		size_t parsed_size = i_parser<null_packet>::parse_payload(recv_buffer.get_header(), recv_buffer.get_use_size(), packets);
 	}
-
+	
 	void session::send_payload()
 	{
 		int sent_size = send(sock, send_buffer.get_buffer(), send_buffer.get_use_size(), NULL);
@@ -53,45 +50,23 @@ namespace c2 { namespace server { namespace core
 
 		send_buffer.rewind();
 	}
-
-	void session::pre_send(const char* msg, size_t size)
+	
+	size_t session::pre_send(const char* msg, size_t size)
 	{
-		size_t ret_val = send_buffer.write(const_cast<char*>(msg), size);
-		if (ret_val != size)
+		size_t sent_size = send_buffer.write(const_cast<char*>(msg), size);
+		if (sent_size != size)
 		{
 			printf("send buffer 사이즈 부족\n");
 		}
-	}
 
+		return sent_size;
+	}
+	
 	SOCKET session::get_socket() const
 	{
 		return sock;
 	}
 	
-	void session::set_socket(SOCKET connected_sock)
-	{
-		this->sock = connected_sock;
-	}
-
-	void session::set_state(e_session_state state)
-	{
-		this->state = state;
-	}
-
-	void session::set_user(i_user* user)
-	{
-		crash_if_false(nullptr != user);
-
-		this->user = user;
-	}
-
-	void session::set_server(select_server* in_server)
-	{
-		crash_if_false(nullptr != in_server);
-
-		this->server = in_server;
-	}
-
 	const string& session::get_ip() const
 	{
 		return ip;
@@ -106,11 +81,43 @@ namespace c2 { namespace server { namespace core
 	{
 		return send_buffer.get_use_size();
 	}
-
+	
 	i_user* session::get_user()
 	{
 		return nullptr;
 	}
+
+	
+	void session::set_socket(SOCKET connected_sock)
+	{
+		this->sock = connected_sock;
+	}
+
+	
+	void session::set_state(e_session_state state)
+	{
+		this->state = state;
+	}
+
+	
+	void session::set_user(i_user* user)
+	{
+		crash_if_false(nullptr != user);
+
+		this->user = user;
+	}
+
+	
+	void session::set_server(select_server* in_server)
+	{
+		crash_if_false(nullptr != in_server);
+
+		this->server = in_server;
+	}
+
+
+
+
 
 } // namespace core
 } // namespace server

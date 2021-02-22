@@ -3,16 +3,18 @@
 
 namespace c2 { namespace server { namespace core
 {
-	i_user::i_user() : server{}
+	
+	i_user::i_user() : owner{}
 	{}
 
 	i_user::~i_user()
 	{}
-
+	
 	session* i_user::get_session()
 	{
-		return nullptr;
+		return this->owner;
 	}
+	
 	void i_user::update_logic()
 	{}
 

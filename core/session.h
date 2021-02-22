@@ -9,7 +9,6 @@ namespace c2 { namespace server { namespace core
 	class i_user;
 	class select_server;
 
-	//template<typeaneme T>
 	class session
 	{
 	public:
@@ -19,7 +18,7 @@ namespace c2 { namespace server { namespace core
 
 		void recv_payload();
 		void send_payload();
-		void pre_send(const char* msg, size_t size);
+		size_t pre_send(const char* msg, size_t size);
 
 		// getter
 		SOCKET get_socket() const;
@@ -35,17 +34,19 @@ namespace c2 { namespace server { namespace core
 		void set_server(select_server* server);
 
 	protected:
-		payload_buffer<65536>	recv_buffer;
-		payload_buffer<65536>	send_buffer;
-		//std::vector<T>	packets;
-		SOCKET					sock;
-		e_session_state			state;
-		string					ip;
-		uint16_t				port;
+		payload_buffer<65536>		recv_buffer;
+		payload_buffer<65536>		send_buffer;
+		SOCKET						sock;
+		e_session_state				state;
+		string						ip;
+		uint16_t					port;
 
-		i_user*					user;
-		select_server*			server;
+		i_user*						user;
+		select_server*				server;
 	};
+
+
+
 } // namespace core
 } // namespace server
 } // namespace c2

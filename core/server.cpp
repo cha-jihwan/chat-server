@@ -4,12 +4,11 @@ namespace c2 { namespace server { namespace core
 {
 	select_server::select_server() 
 		: listen_sock{ INVALID_SOCKET }
-		, c_ip{}, c_port{}
+		, ip{}, port{}
 		, generated_session_id{}
 	{}
 
-	select_server::~select_server()
-	{}
+	select_server::~select_server() {}
 
 	void select_server::update_logic()
 	{
@@ -30,7 +29,7 @@ namespace c2 { namespace server { namespace core
 				// session.parse_payload();
 					// processing
 			try_receive_all_sessions();
-			// 
+
 			update_logic();
 			// send
 			try_send_all_sessions();
@@ -98,7 +97,6 @@ namespace c2 { namespace server { namespace core
 		// linger 
 		// nagle
 
-		session_pool = new bounded_object_pool<session, constant::c_maximum_ccu>();
 
 		return true;
 	}
@@ -114,12 +112,41 @@ namespace c2 { namespace server { namespace core
 		WSACleanup();
 	}
 
+	void select_server::broadcast(const char * msg, size_t size)
+	{
+		for (const auto& kv : sock_matching_table)
+		{
+			if (size != kv.second->pre_send(msg, size))
+			{
+				// error handling
+			}
+		}
+	}
+
 	bool select_server::initialize_contents()
 	{
 		return false;
 	}
 
 	void select_server::finalize_contents() {}
+
+	session * select_server::allocate_session()
+	{
+		return nullptr;
+	}
+
+	i_user * select_server::allocate_user()
+	{
+		return nullptr;
+	}
+
+	void select_server::free_session(session * sess)
+	{
+	}
+
+	void select_server::free_user(i_user * user)
+	{
+	}
 
 	void select_server::try_accept()
 	{
@@ -149,7 +176,6 @@ namespace c2 { namespace server { namespace core
 		FD_SET read_set;
 		read_set.fd_count = 0;
 
-
 		for (const auto& kv : sock_matching_table)
 		{
 			read_set.fd_array[read_set.fd_count] = kv.first;
@@ -167,7 +193,6 @@ namespace c2 { namespace server { namespace core
 					crash_if_false(nullptr != sess);
 
 					sess->recv_payload();
-					//sess->parse_payload();
 				}
 			}
 		}
@@ -211,9 +236,9 @@ namespace c2 { namespace server { namespace core
 
 			return;
 		}
+///////////////////////////////
+		session* sess = this->allocate_session();
 
-		
-		session* sess = session_pool->allocate();
 		crash_if_false(nullptr != sess);
 
 		sess->set_state(e_session_state::ESTABLISHED);

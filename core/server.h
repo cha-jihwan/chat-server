@@ -25,21 +25,25 @@ namespace c2 { namespace server { namespace core
 		void release_session(SOCKET sock);
 		
 	protected:
-		// broadcast
+		void broadcast(const char* msg, size_t size);
 		// packet_type
 		virtual bool initialize_contents();
 		virtual void finalize_contents();
 
+		virtual session* allocate_session() = 0;
+		virtual i_user* allocate_user() = 0;
+
+		virtual void free_session(session* sess) = 0;
+		virtual void free_user(i_user* user)     = 0;
+
 	private:
 		SOCKET								listen_sock;
-		std::string							c_ip;
-		uint16_t							c_port;
+		std::string							ip;
+		uint16_t							port;
 		uint32_t							generated_session_id;
 
 		unordered_map<SOCKET, session*>		sock_matching_table;
 		//unordered_map<uint32_t, session*>	session_id_matching_table; 
-
-		bounded_object_pool<session, constant::c_maximum_ccu>*	session_pool;
 	};
 
 } // namespace core
