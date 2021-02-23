@@ -23,6 +23,8 @@ namespace c2 { namespace server { namespace core
 
 	void select_server::run()
 	{
+		printf("start...\n");
+
 		// timer가 필요한가...
 		for (;;)
 		{
@@ -30,6 +32,7 @@ namespace c2 { namespace server { namespace core
 			try_receive_all_sessions(); // recv 처리
 			update_logic();
 			try_send_all_sessions(); // send 처리
+			lazy_disconnect();
 		}
 	}
 
@@ -145,13 +148,7 @@ namespace c2 { namespace server { namespace core
 		return nullptr;
 	}
 
-	void select_server::free_session(session * sess)
-	{
-	}
 
-	void select_server::free_user(i_user * user)
-	{
-	}
 
 	void select_server::try_accept()
 	{
@@ -247,25 +244,63 @@ namespace c2 { namespace server { namespace core
 			return;
 		}
 ///////////////////////////////
+		register_session(client_sock);
+	}
 
+	void select_server::request_disconnection(session* sess) 
+	{
+		to_disconnect_sessions.push_back(sess);
+	}
 
-		// 신규 session 처리 
-		// 함수로 나눌지 생각중...
+	//
+	void select_server::lazy_disconnect()
+	{
+		for (session* sess : to_disconnect_sessions)
+		{
+			if (e_session_state::CLOSED != sess->get_state())
+			{
+				unregister_session(sess);
+			}
+		}
+
+		to_disconnect_sessions.clear();
+	}
+
+	// 신규 session 처리 
+	void select_server::register_session(SOCKET connected_sock)
+	{
 		session* sess = this->allocate_session();
-
 		crash_if_false(nullptr != sess);
 
+
 		sess->set_state(e_session_state::ESTABLISHED);
-		sess->set_socket(client_sock);
+		sess->set_socket(connected_sock);
 		sess->set_server(this);
 
-		sock_matching_table.emplace(client_sock, sess);
+		sock_matching_table.emplace(connected_sock, sess);
+
+		on_accept(sess);
 	}
 
-	void select_server::release_session(SOCKET sock)
+	// session 종료 처리 
+	void select_server::unregister_session(session* sess)
 	{
-		// session 제거
+		crash_if_false(nullptr != sess);
+
+		sess->set_state(e_session_state::CLOSED);
+		
+		on_disconnect(sess);
+
+		sock_matching_table.erase(sess->get_socket());
+
+		this->free_session(sess);
 	}
+
+	// 가상 함수 인터페이스 들...
+	void select_server::free_session(session * sess) {}
+	void select_server::free_user(i_user * user) {}
+	void select_server::on_accept(session * sess) {}
+	void select_server::on_disconnect(session * sess) {}
 
 } // namespace core
 } // namespace server

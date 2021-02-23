@@ -18,11 +18,14 @@ namespace c2 { namespace server { namespace core
 		int received_size = recv(sock, (char*)recv_buffer.get_write_buffer(), recv_buffer.get_buffer_size(), NULL);
 		if (received_size == SOCKET_ERROR) 
 		{
-			// logging 필요
 			printf("received_size = socket_error %d\n", GetLastError());
+			// logging 필요
+			server->request_disconnection(this);
 		}
 		else if (received_size == 0) // 끊긴거
 		{
+			server->request_disconnection(this);
+
 			printf("received_size = 0 %d\n", GetLastError());
 		}
 
@@ -50,6 +53,7 @@ namespace c2 { namespace server { namespace core
 		if (sent_size == SOCKET_ERROR)
 		{
 			// socket error 처리
+			server->request_disconnection(this);
 		}
 
 		send_buffer.move_read_head(sent_size);
@@ -91,6 +95,11 @@ namespace c2 { namespace server { namespace core
 	i_user* session::get_user()
 	{
 		return nullptr;
+	}
+
+	e_session_state session::get_state()
+	{
+		return this->state;
 	}
 
 	

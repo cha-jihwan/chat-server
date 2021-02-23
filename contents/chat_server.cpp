@@ -3,11 +3,8 @@
 
 namespace c2 { namespace server { namespace contents 
 {
-	chat_server::chat_server()
-	{}
-
-	chat_server::~chat_server() 
-	{}
+	chat_server::chat_server() {}
+	chat_server::~chat_server()  {}
 
 	bool chat_server::initialize_contents()
 	{
@@ -48,6 +45,13 @@ namespace c2 { namespace server { namespace contents
 		crash_if_false(nullptr != user);
 
 		user_pool->free((chat_user*)user);
+	}
+	void chat_server::on_accept(session * sess)
+	{
+	}
+
+	void chat_server::on_disconnect(session * sess)
+	{
 	}
 } // namespace contents
 } // namespace server

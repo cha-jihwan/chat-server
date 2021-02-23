@@ -26,6 +26,8 @@ namespace c2 { namespace server { namespace core
 		const uint16_t get_port() const;
 		const size_t send_buffer_size() const;
 		i_user* get_user();
+		e_session_state	get_state();
+
 
 		// setter
 		void set_socket(SOCKET connected_sock);
