@@ -14,7 +14,10 @@ namespace c2 { namespace server { namespace core
 	{
 		for (auto& kv : sock_matching_table)
 		{
-			kv.second->get_user()->update_logic();
+			if (nullptr != kv.second->get_user())
+			{
+				kv.second->get_user()->update_logic();
+			}
 		}
 	}
 
@@ -23,33 +26,34 @@ namespace c2 { namespace server { namespace core
 		// timer가 필요한가...
 		for (;;)
 		{
-			// accept 처리
-			try_accept();
-			// recv 
-				// session.parse_payload();
-					// processing
-			try_receive_all_sessions();
-
+			try_accept(); // accept 처리
+			try_receive_all_sessions(); // recv 처리
 			update_logic();
-			// send
-			try_send_all_sessions();
+			try_send_all_sessions(); // send 처리
 		}
 	}
 
 	void select_server::initialize()
 	{
-		// 윈속 초기화
+		printf("server initialized..");
+
+		// 윈속 초기화 및 core단에서 필요한 것 초기화
 		if (false == initialize_core())
 		{
 			printf("select_server::initialize_core() ");
 			crash();
 		}
 
+		printf("..");
+
+		// 컨텐츠단에서 필요한 것 초기화
 		if (false == initialize_contents())
 		{
 			printf("select_server::initialize_contents() ");
 			crash();
 		}
+
+		printf("OK\n");
 	}
 
 	void select_server::finalize()
@@ -64,8 +68,10 @@ namespace c2 { namespace server { namespace core
 		WSADATA wsa;
 		if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
 		{
+			printf("WSAStartup() error in select_server err-code : %d", GetLastError());
 			return false;
 		}
+
 
 		listen_sock = socket(AF_INET, SOCK_STREAM, 0);
 		if (listen_sock == INVALID_SOCKET)
@@ -96,7 +102,6 @@ namespace c2 { namespace server { namespace core
 		// sock opt
 		// linger 
 		// nagle
-
 
 		return true;
 	}
@@ -172,16 +177,19 @@ namespace c2 { namespace server { namespace core
 
 	void select_server::try_receive_all_sessions()
 	{
-		timeval tv{};
+		// 초기화
+		timeval tv{0, 0};
 		FD_SET read_set;
 		read_set.fd_count = 0;
 
+		// FD_SET에 담는다.
 		for (const auto& kv : sock_matching_table)
 		{
 			read_set.fd_array[read_set.fd_count] = kv.first;
 			read_set.fd_count += 1;
 		}
 
+		// select()를 통해 recv() 호출이 가능한 소켓을 찾고 없다면 바로 리턴한다.
 		if (1 <= select(read_set.fd_count, &read_set, nullptr, nullptr, &tv))
 		{
 			for (const auto& kv : sock_matching_table)
@@ -192,7 +200,9 @@ namespace c2 { namespace server { namespace core
 
 					crash_if_false(nullptr != sess);
 
+					// session의 recv()를 호출 및 처리
 					sess->recv_payload();
+					sess->parse_payload();
 				}
 			}
 		}
@@ -222,7 +232,7 @@ namespace c2 { namespace server { namespace core
 		SOCKET client_sock = accept(listen_sock, (SOCKADDR*)&sock_addr, &addr_len);
 		if (SOCKET_ERROR == client_sock)
 		{
-
+			printf("accept() error : %d all new session()\n", GetLastError());
 		}
 
 
@@ -237,17 +247,19 @@ namespace c2 { namespace server { namespace core
 			return;
 		}
 ///////////////////////////////
+
+
+		// 신규 session 처리 
+		// 함수로 나눌지 생각중...
 		session* sess = this->allocate_session();
 
 		crash_if_false(nullptr != sess);
 
 		sess->set_state(e_session_state::ESTABLISHED);
 		sess->set_socket(client_sock);
-		// ip, port
-		// sesion을 끄내고 
-		// session 추가
-		// user 할당 X
-		// 신규 처리
+		sess->set_server(this);
+
+		sock_matching_table.emplace(client_sock, sess);
 	}
 
 	void select_server::release_session(SOCKET sock)

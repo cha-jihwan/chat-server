@@ -15,8 +15,8 @@ namespace c2 { namespace server { namespace core
 		sockaddr_in* get_as_aockaddrin();
 		
 		const std::string to_string();
-		const uint16_t c_port();
-		std::string c_ip();
+		const uint16_t port();
+		std::string ip();
 
 	private:
 		sockaddr sock_addr;

@@ -3,9 +3,10 @@
 
 int main()
 {
-	//using namespace c2::server::core; // for select server
-	using namespace c2::server::contents;
+	//using namespace c2::server::core; // for select_server
+	using namespace c2::server::contents; // for chat_server
 
+	// 현재 기능상엔 에코 서버임.
 	chat_server server;
 
 	server.initialize();

@@ -10,7 +10,6 @@ namespace c2 { namespace server { namespace contents
 		virtual void parse_payload();
 	};
 
-
 } // namespace contents
 } // namespace server
 } // namespace c2

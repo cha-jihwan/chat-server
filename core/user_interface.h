@@ -20,6 +20,7 @@ namespace c2 { namespace server {  namespace core
 	private:
 		session* owner;
 	};
+
 } // namespace core
 } // namespace server
 } // namespace c2

@@ -24,8 +24,9 @@ namespace c2 { namespace server { namespace core
 		void accept_new_session();
 		void release_session(SOCKET sock);
 		
-	protected:
 		void broadcast(const char* msg, size_t size);
+
+	protected:
 		// packet_type
 		virtual bool initialize_contents();
 		virtual void finalize_contents();

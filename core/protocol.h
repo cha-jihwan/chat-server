@@ -14,8 +14,18 @@ enum e_packet_type
 	PT_MAX
 };
 
-struct null_packet {};
-struct packet : public null_packet 
+
+struct null_packet {};				// 패킷 인터페이스.
+
+struct msg_view
 {
-	e_packet_type type;
+	char*	msg;
+	size_t	size;
+};
+
+struct packet // 패킷 구현.
+{
+	e_packet_type	type;		// 명령어 
+	msg_view		msg;
+	msg_view		option;
 };
