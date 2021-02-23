@@ -8,6 +8,12 @@ namespace c2 { namespace server { namespace contents
 		chat_session();
 		virtual ~chat_session();
 		virtual void parse_payload();
+
+		void enter_room(string room_name);
+		void leave_room();
+
+		void enter_lobby();
+		void leave_lobby();
 	};
 
 } // namespace contents

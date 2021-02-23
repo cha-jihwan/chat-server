@@ -19,6 +19,22 @@ namespace c2 { namespace server { namespace contents
 		//size_t parsed_size = telnet_parser::parse_payload(recv_buffer.get_header(), recv_buffer.get_use_size(), packets);
 	}
 	
+	void chat_session::enter_room(string room_name)
+	{
+	}
+
+	void chat_session::leave_room()
+	{
+	}
+
+	void chat_session::enter_lobby()
+	{
+	}
+
+	void chat_session::leave_lobby()
+	{
+	}
+	
 } // namespace core
 } // namespace server
 } // namespace c2

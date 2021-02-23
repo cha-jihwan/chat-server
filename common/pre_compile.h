@@ -32,9 +32,11 @@
 #include "../core/server.h"
 
 // contents
+#include "../contents/contents_text.h"
 #include "../contents/telnet_parser.h"
 #include "../contents/chat_user.h"
 #include "../contents/chat_session.h"
+#include "../contents/room.h"
+#include "../contents/lobby.h"
 #include "../contents/chat_server.h"
-
 

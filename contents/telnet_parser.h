@@ -5,8 +5,8 @@ class telnet_parser : public i_parser<packet>
 public:
 	static size_t parse_payload(char* in_buffer, size_t in_size, std::vector<packet>& out_buffer);
 private:
-	static char* find_character_from_payload(char*& in_buf, size_t in_size, const char ch);
-	static char* find_string_from_payload(char*& in_buf, size_t in_size, const char* str);
+	static char* find_character_from_payload(char* in_buf, size_t in_size, const char ch);
+	static char* find_string_from_payload(char* in_buf, size_t in_size, const char* str);
 };
 
 inline size_t telnet_parser::parse_payload(char* in_buffer, size_t in_size, std::vector<packet>& out_buffer)
@@ -64,15 +64,18 @@ inline size_t telnet_parser::parse_payload(char* in_buffer, size_t in_size, std:
 	return parsed_size;
 }
 
+
+
+
+// payload로 부터 문자를 찾는다.
 // return value 
-// 문자열을 찾지 못한다면 nullptr
-// 문자열을 찾는다면 위치 시작 지점.
-
-// 문자열 찾는 안전 함수.
-
-inline char* telnet_parser::find_character_from_payload(char*& in_buf, size_t in_size, const char ch)
+// 문자열을 찾는다면 시작지점
+// 못찾는다면 nullptr
+// 문자를 찾지 못한다면 nullptr
+// 문자를 찾는다면 위치 시작 지점.
+inline char* telnet_parser::find_character_from_payload(char* in_buf, size_t in_size, const char ch)
 {
-	for (int n{}; n < in_size; ++n)
+	for (int n{}; n < in_size; ++n, ++in_buf)
 	{
 		if (in_buf[n] == ch)
 		{
@@ -83,10 +86,18 @@ inline char* telnet_parser::find_character_from_payload(char*& in_buf, size_t in
 	return nullptr;
 }
 
-inline char* telnet_parser::find_string_from_payload(char*& in_payload, size_t in_size, const char* str)
+
+// payload로 부터 문자열을 찾는다.
+// 
+// return value 
+// 문자열을 찾는다면 시작지점
+// 못찾는다면 nullptr
+inline char* telnet_parser::find_string_from_payload(char* in_payload, size_t in_size, const char* str)
 {
+
 	for (int n{}; n < in_size; ++n)
 	{
+
 	}
 
 

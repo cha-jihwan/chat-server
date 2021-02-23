@@ -15,7 +15,7 @@ int main()
 
 	server.finalize();
 
-	return 0x01022340100;
+	return 0x01022340100; // 관리자 핸드폰 번호.
 }
 
 

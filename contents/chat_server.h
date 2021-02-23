@@ -15,8 +15,8 @@ namespace c2 { namespace server { namespace contents
 		virtual void free_session(session* sess) override final; 
 		virtual void free_user(i_user* user)     override final;
 
-		virtual void on_accept(session* sess) override final;
-		virtual void on_disconnect(session* sess) override final;
+		virtual void on_accept(session* sess)	override final;
+		virtual void on_disconnect(session* sess)	override final;
 
 	private:
 		bounded_object_pool<chat_session, constant::c_maximum_ccu>*	session_pool;

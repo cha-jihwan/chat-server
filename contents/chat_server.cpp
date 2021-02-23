@@ -18,7 +18,7 @@ namespace c2 { namespace server { namespace contents
 	{
 		chat_session* chatting_session = session_pool->allocate(); 
 		
-		crash_if_false( nullptr != chatting_session );
+		crash_if_false(nullptr != chatting_session);
 	
 		return chatting_session;
 	}
@@ -40,18 +40,27 @@ namespace c2 { namespace server { namespace contents
 		session_pool->free((chat_session*)sess);
 	}
 
-	void chat_server::free_user(i_user * user)
+	void chat_server::free_user(i_user* user)
 	{
 		crash_if_false(nullptr != user);
 
 		user_pool->free((chat_user*)user);
 	}
-	void chat_server::on_accept(session * sess)
+
+	void chat_server::on_accept(session* sess)
 	{
+		using namespace c2::server::contents;
+
+		crash_if_false(nullptr != sess);
+
+		static char header[120] = "------------------------------------------\n\n\n\n 채팅서버 \n\n 넷마블네오 \n\n ------------------------------------------\n";
+		
+		sess->pre_send( header, sizeof(header));
 	}
 
-	void chat_server::on_disconnect(session * sess)
+	void chat_server::on_disconnect(session* sess)
 	{
+
 	}
 } // namespace contents
 } // namespace server
