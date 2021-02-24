@@ -14,6 +14,10 @@ private:
 
 inline size_t telnet_parser::parse_payload(char* in_buffer, size_t in_size, std::vector<packet>& out_buffer)
 {
+	//packet  pkt2;
+	//map<string_view, int> m;
+	//m[pkt2.msg];
+
 	size_t	parsed_size{};
 	char*	buf_ptr = in_buffer;
 	packet  pkt;

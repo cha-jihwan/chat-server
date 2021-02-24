@@ -18,15 +18,9 @@ enum e_packet_type
 struct null_packet {};				// 패킷 인터페이스.
 
 
-struct msg_view
-{
-	char*	msg;
-	size_t	size;
-};
-
 struct packet // 패킷 구현.
 {
 	e_packet_type	type;		// 명령어 
-	msg_view		msg;
-	msg_view		option;
+	string_view		msg;
+	string_view		option;
 };

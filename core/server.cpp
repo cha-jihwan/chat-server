@@ -38,6 +38,9 @@ namespace c2 { namespace server { namespace core
 
 	void select_server::initialize()
 	{
+		// setup dump
+		SetUnhandledExceptionFilter(exception_filter);
+
 		printf("server initialized..");
 
 		// 윈속 초기화 및 core단에서 필요한 것 초기화
