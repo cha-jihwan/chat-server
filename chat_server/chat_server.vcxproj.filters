@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{3ae21231-318f-458f-98a3-5356c929d87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{b333f6c6-282c-4961-bc0c-04114ac8b57a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{bb2d834c-e08c-455f-8bc2-1d54aef74ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="contents">
+      <UniqueIdentifier>{eafa11d4-e38b-4fec-a0ed-db2baa3ee3b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{35a0af37-a306-4c3b-9231-bac13aa20b9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\pre_compile.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\chat_lobby.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\chat_room.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\chat_room_manager.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\chat_server.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\chat_session.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\chat_user.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\contents_text.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\packet_handler.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="contents\telnet_parser.h">
+      <Filter>contents</Filter>
+    </ClInclude>
+    <ClInclude Include="core\end_point.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\environment.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\object_pool.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\object_pool.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\parser_interface.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\payload_buffer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\protocol.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\server.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\session.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\user_interface.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="util\crash.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\dump.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\string_view.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="contents\chat_lobby.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\chat_room_manager.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\chat_server.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\chat_session.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\chat_user.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\contents_text.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\packet_handler.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\telnet_parser.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="core\end_point.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\environment.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\object_pool.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\payload_buffer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\protocol.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\server.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\session.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\user_interface.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="util\crash.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\dump.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\string_view.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="contents\chat_room.cpp">
+      <Filter>contents</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

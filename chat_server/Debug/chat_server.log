@@ -1,0 +1,158 @@
+﻿  string_view.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\string_view.cpp(9): warning C4458: 'size' 선언은 클래스 멤버를 숨깁니다.
+  c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\string_view.h(22): note: 'string_view::size' 선언을 참조하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\string_view.cpp(22): warning C4100: 'other': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\string_view.cpp(43): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\string_view.cpp(75): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  dump.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\dump.cpp(11): warning C4100: 'pReserved': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\dump.cpp(11): warning C4100: 'line': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\dump.cpp(11): warning C4100: 'filfile': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\dump.cpp(11): warning C4100: 'function': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\dump.cpp(11): warning C4100: 'expression': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\util\dump.cpp(16): warning C4100: 'error': 참조되지 않은 정식 매개 변수입니다.
+  crash.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  main.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\main.cpp(16): warning C4305: 'return': '__int64'에서 'int'(으)로 잘립니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\main.cpp(16): warning C4309: 'return': 상수 값이 잘립니다.
+  user_interface.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  session.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\session.cpp(112): warning C4458: 'state' 선언은 클래스 멤버를 숨깁니다.
+  c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\session.h(42): note: 'c2::server::core::session::state' 선언을 참조하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\session.cpp(118): warning C4458: 'user' 선언은 클래스 멤버를 숨깁니다.
+  c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\session.h(46): note: 'c2::server::core::session::user' 선언을 참조하십시오.
+  server.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\server.cpp(302): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\server.cpp(303): warning C4100: 'user': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\server.cpp(304): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\server.cpp(305): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+  protocol.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  payload_buffer.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  object_pool.cpp
+  environment.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  end_point.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\end_point.cpp(12): warning C4459: 'c_port' 선언은 전역 선언을 숨깁니다.
+  c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\environment.h(8): note: 'c2::server::core::constant::c_port' 선언을 참조하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\end_point.cpp(35): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868): note: 'inet_ntoa' 선언을 참조하십시오.
+  telnet_parser.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(12): warning C4100: 'out_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(122): warning C4189: 'founded_size': 지역 변수가 초기화되었으나 참조되지 않았습니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(121): warning C4189: 'in_buf': 지역 변수가 초기화되었으나 참조되지 않았습니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(138): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(151): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(151): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(151): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(156): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(156): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(156): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(161): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(161): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(161): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(166): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(166): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(166): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(171): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(171): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(171): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(176): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(176): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(176): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(181): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(181): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(181): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(186): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(186): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(186): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(191): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(191): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(191): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+  packet_handler.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(3): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(3): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(8): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(8): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(13): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(13): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(18): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(18): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(23): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(23): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(28): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(28): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(33): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(33): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(38): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(38): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(43): warning C4100: 'in_buffer': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\packet_handler.cpp(43): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+  contents_text.cpp
+  chat_user.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\chat_user.cpp(12): warning C4100: 'room_name': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\chat_user.cpp(31): warning C4100: 'user_name': 참조되지 않은 정식 매개 변수입니다.
+  chat_session.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  chat_server.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\chat_server.cpp(64): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+  chat_room_manager.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  chat_room.cpp
+  코드를 생성하고 있습니다...
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\contents\telnet_parser.cpp(42): warning C4702: 접근할 수 없는 코드입니다.
+  컴파일하고 있습니다...
+  chat_lobby.cpp
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
+c:\users\jihwan.cha\documents\github\chat\chat_server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  코드를 생성하고 있습니다...
+  chat_server.vcxproj -> C:\Users\jihwan.cha\Documents\GitHub\chat\chat_server\Debug\chat_server.exe
+  chat_server.vcxproj -> C:\Users\jihwan.cha\Documents\GitHub\chat\chat_server\Debug\chat_server.pdb (Partial PDB)
