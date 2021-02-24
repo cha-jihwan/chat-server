@@ -30,16 +30,16 @@ namespace c2 { namespace server { namespace core
 	}
 	*/
 
-	std::string end_point::ip()
-	{
-		return ::inet_ntoa(reinterpret_cast<sockaddr_in*>(&sock_addr)->sin_addr);
-	}
+	//std::string end_point::ip()
+	//{
+	//	return ::inet_ntoa(reinterpret_cast<sockaddr_in*>(&sock_addr)->sin_addr);
+	//}
 
-	//
-	const std::string end_point::to_string()
-	{
-		return std::string(this->ip()) + ":" + std::to_string(this->port());
-	}
+	////
+	//const std::string end_point::to_string()
+	//{
+	//	return std::string(this->ip()) + ":" + std::to_string(this->port());
+	//}
 
 
 	const uint16_t end_point::port()

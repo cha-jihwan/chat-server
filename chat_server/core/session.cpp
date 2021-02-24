@@ -102,6 +102,11 @@ namespace c2 { namespace server { namespace core
 		return this->state;
 	}
 
+	select_server* session::get_server()
+	{
+		return server;
+	}
+
 	
 	void session::set_socket(SOCKET connected_sock)
 	{

@@ -12,7 +12,7 @@ public:
 	static void initialize();
 
 private:
-	//static char* find_space_from_payload(char* in_buf, size_t in_size);
+	static char* find_space_from_payload(char* in_buf, size_t in_size);
 	static char* find_enter_from_payload(char* in_buf, size_t in_size);
 	//static char* find_body(char* in_buf, size_t in_size, packet& out_packet);
 	//static char* find_option(char* in_buf, size_t in_size, packet& out_packet);
@@ -26,7 +26,7 @@ private:
 	static size_t leave_room_handler(chat_session* sess, char* in_buffer, size_t size);
 	static size_t whisper_handler(chat_session* sess, char* in_buffer, size_t size);
 	static size_t chatting_handler(chat_session* sess, char* in_buffer, size_t size);
-	static size_t select_room_handler(chat_session* sess, char* in_buffer, size_t size);
+	static size_t select_rooms_handler(chat_session* sess, char* in_buffer, size_t size);
 	static size_t select_user_in_room_handler(chat_session* sess, char* in_buffer, size_t size);
 	static size_t select_all_handler(chat_session* sess, char* in_buffer, size_t size);
 

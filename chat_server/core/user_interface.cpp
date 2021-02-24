@@ -14,6 +14,11 @@ namespace c2 { namespace server { namespace core
 	{
 		return this->owner;
 	}
+
+	void i_user::set_session(session * sess)
+	{
+		this->owner = sess;
+	}
 	
 	void i_user::update_logic()
 	{}

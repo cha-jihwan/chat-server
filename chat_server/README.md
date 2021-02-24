@@ -38,7 +38,7 @@ constents부 구현
 
 로그인 기능     /LOGIN          /login      // case2  // login id
 방생성 기능     /CREATE         /create     // case2  // create room_name
-방 폭파         /DELETE         /delete     // case2  // delete romm_name
+방 떠나기        /DELETE         /delete     // case1  // leave
 방 목록         /ROOMLIST       /roomlist   // case1
 채팅            /CHAT           /chat       // case2 // chat 
 귓속말          /WHISPER        /whiser     // case3

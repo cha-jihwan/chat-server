@@ -27,6 +27,7 @@ namespace c2 { namespace server { namespace core
 		const size_t send_buffer_size() const;
 		i_user* get_user();
 		e_session_state	get_state();
+		select_server*	get_server();
 
 
 		// setter

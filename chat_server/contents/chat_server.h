@@ -18,7 +18,20 @@ namespace c2 { namespace server { namespace contents
 		virtual void on_accept(session* sess)	override final;
 		virtual void on_disconnect(session* sess)	override final;
 
+		// user 를 active_table에 추가.
+		// 삽입이 되었다면 true를 리턴.
+		bool register_user(chat_user* user);
+
+		// user 를 active_table에 추가.
+		// 삽입이 되었다면 true를 리턴.
+		void unregister_user(chat_user* user);
+
+		chat_user*	get_user(const string& name);
+		string&&	get_active_user_to_string();
+
 	private:
+		unordered_map<string, chat_user*>		active_user_table;
+
 		bounded_object_pool<chat_session, constant::c_maximum_ccu>*	session_pool;
 		bounded_object_pool<chat_user, constant::c_maximum_ccu> *	user_pool;
 	};

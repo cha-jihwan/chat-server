@@ -14,8 +14,9 @@ namespace c2 { namespace server {  namespace core
 		virtual ~i_user();
 		virtual void update_logic();
 
-	protected:
 		session* get_session();
+		void set_session(session* sess);
+	protected:
 
 	private:
 		session* owner;

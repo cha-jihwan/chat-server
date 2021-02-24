@@ -16,7 +16,7 @@ namespace c2 { namespace server { namespace core
 		
 		const std::string to_string();
 		const uint16_t port();
-		std::string ip();
+		//std::string ip();
 
 	private:
 		sockaddr sock_addr;

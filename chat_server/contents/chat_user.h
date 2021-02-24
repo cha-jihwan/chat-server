@@ -17,8 +17,14 @@ namespace c2 { namespace server { namespace contents
 		virtual void update_logic();
 
 	public:
+		// getter
 		e_user_state get_state();
+		string& get_name();
+		chat_room* get_room() const;
+
+		// setter
 		void set_state(e_user_state);
+		void set_name(string&& name);
 
 		void enter_room(const string& room_name);
 		void leave_room();
@@ -26,8 +32,9 @@ namespace c2 { namespace server { namespace contents
 		void leave_lobby();
 		void whisper(const std::string& user_name);
 		
-	private:
 
+	private:
+		std::string name;
 		e_user_state state;
 		chat_room* room;
 	};

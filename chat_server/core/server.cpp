@@ -128,7 +128,6 @@ namespace c2 { namespace server { namespace core
 			if (size != kv.second->pre_send(msg, size))
 			{
 				// error handling
-
 			}
 		}
 	}

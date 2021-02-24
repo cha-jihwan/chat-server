@@ -13,6 +13,9 @@ namespace c2 { namespace server { namespace contents
 		session_pool = new bounded_object_pool<chat_session, constant::c_maximum_ccu>();
 		user_pool    = new bounded_object_pool<chat_user, constant::c_maximum_ccu>();
 
+		g_lobby = new chat_lobby();
+		g_room_manager = new chat_room_manager();
+
 		return true;
 	}
 
@@ -63,7 +66,42 @@ namespace c2 { namespace server { namespace contents
 
 	void chat_server::on_disconnect(session* sess)
 	{
+		crash_if_false(nullptr != sess);
+		chat_user* user = (chat_user*)sess->get_user();
+		crash_if_false(nullptr != user);
 
+		unregister_user(user);
+	}
+
+	bool chat_server::register_user(chat_user* user)
+	{
+		crash_if_false(nullptr != user);
+
+		// 삽입이 되었다면 true를 리턴
+		return active_user_table.emplace(user->get_name(), user).second;
+	}
+
+	void chat_server::unregister_user(chat_user * user)
+	{
+		active_user_table.erase(user->get_name());
+	}
+
+	chat_user* chat_server::get_user(const string& name)
+	{
+		return active_user_table[name];
+	}
+
+	string&& chat_server::get_active_user_to_string()
+	{
+		string active_user_list;
+
+		for (auto& kv : active_user_table)
+		{
+			active_user_list += kv.first;
+			active_user_list += "\r\n";
+		}
+
+		return std::move(active_user_list);
 	}
 } // namespace contents
 } // namespace server
