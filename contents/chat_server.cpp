@@ -55,7 +55,7 @@ namespace c2 { namespace server { namespace contents
 
 		static char header[120] = "------------------------------------------\n\n\n\n 채팅서버 \n\n 넷마블네오 \n\n ------------------------------------------\n";
 		
-		sess->pre_send( header, sizeof(header));
+		sess->pre_send(header, sizeof(header));
 	}
 
 	void chat_server::on_disconnect(session* sess)

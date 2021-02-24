@@ -11,8 +11,6 @@ namespace c2 { namespace server { namespace contents
 		std::vector<session*> ss;
 	};
 
-
-
 } // namespace contents
 } // namespace server
-} // namespace 
+} // namespace c2

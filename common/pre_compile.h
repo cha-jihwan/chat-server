@@ -6,6 +6,13 @@
 #pragma comment(lib, "ws2_32.lib")
 #include <cstdint>
 #include <string>
+
+#include <tchar.h>						// for dump
+#include <DbgHelp.h>					// for dump
+#include <signal.h>						// for dump
+#include <strsafe.h>					// for dump
+#pragma comment (lib, "Dbghelp")		// for dump
+
 //#define STRSAFE_DEPRECATE  
 //#include <strsafe.h>  
 //#include <string_view> for 
@@ -15,6 +22,8 @@
 
 // util
 #include "../util/crash.h"
+#include "../util/dump.h"
+#include "../util/string_view.h"
 
 // net
 
@@ -36,7 +45,7 @@
 #include "../contents/telnet_parser.h"
 #include "../contents/chat_user.h"
 #include "../contents/chat_session.h"
-#include "../contents/room.h"
-#include "../contents/lobby.h"
+#include "../contents/chat_room.h"
+#include "../contents/chat_lobby.h"
 #include "../contents/chat_server.h"
 

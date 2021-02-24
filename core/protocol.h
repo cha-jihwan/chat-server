@@ -17,6 +17,7 @@ enum e_packet_type
 
 struct null_packet {};				// 패킷 인터페이스.
 
+
 struct msg_view
 {
 	char*	msg;

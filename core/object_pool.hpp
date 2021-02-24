@@ -4,6 +4,7 @@
 //// -> 걍 동적할당 하자.
 //// vector를 stack 처럼 사용.
 //// 최대한 객체간 붙여서 캐시 최적화
+
 using namespace std;
 template <typename T, size_t N>
 class bounded_object_pool
@@ -12,7 +13,7 @@ public:
 	bounded_object_pool();
 	T* allocate();
 	void free(T* obj);
-	const size_t capacity(); // c++14는 constexpr 지원이 좀 애매한듯?
+	const size_t capacity();
 	const size_t size() const;
 	const bool empty() const;
 
@@ -26,6 +27,8 @@ private:
 template <typename T, size_t N>
 bounded_object_pool<T, N>::bounded_object_pool()
 {
+	//static_assert( (sizeof(T) * N) >= (1024 * 1024), "" );
+
 	pool_container.reserve(N);
 
 	for (T& obj : objects)
@@ -37,20 +40,19 @@ bounded_object_pool<T, N>::bounded_object_pool()
 template <typename T, size_t N>
 T* bounded_object_pool<T, N>::allocate()
 {
-	if (true == pool_container.empty())
+	if (pool_container.empty()) 
 	{
 		return nullptr;
 	}
-	else
-	{
-		T* element = pool_container.back();
 
-		pool_container.pop_back();
 
-		new(element) T{};
+	T* element = pool_container.back();
 
-		return element;
-	}
+	pool_container.pop_back();
+
+	new(element) T{};
+
+	return element;
 }
 
 template <typename T, size_t N>
