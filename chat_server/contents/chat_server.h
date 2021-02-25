@@ -28,7 +28,7 @@ namespace c2 { namespace server { namespace contents
 		virtual bool on_accept(SOCKET sock)	override final;
 
 		// session이 accept()된 이후의 콘텐츠단에서 필요한 처리
-		virtual void on_join(session* sess)	override final;
+		virtual void on_session_join(session* sess)	override final;
 		// session이 연결이 끊긴 이후의 콘텐츠단에서 필요한 처리
 		virtual void on_disconnect(session* sess)	override final;
 

@@ -8,3 +8,7 @@ chat_server/Dump_20210225_012934_1.dmp
 *.opendb
 *.db
 *.dmp
+*.log
+*.tlog
+*.idb
+*.pdb

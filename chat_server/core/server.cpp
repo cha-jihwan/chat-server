@@ -293,7 +293,7 @@ namespace c2 { namespace server { namespace core
 
 		sock_matching_table.emplace(connected_sock, sess);
 
-		on_join(sess);
+		on_session_join(sess);
 	}
 
 	// session 종료 처리 
@@ -322,11 +322,11 @@ namespace c2 { namespace server { namespace core
 	}
 
 	// 가상 함수 인터페이스 들...
-	void select_server::free_session(session * sess) {}
-	void select_server::free_user(i_user * user) {}
+	void select_server::free_session(session* sess) {}
+	void select_server::free_user(i_user* user) {}
 	bool select_server::on_accept(SOCKET sock) { return false; }
-	void select_server::on_join(session * sess) {}
-	void select_server::on_disconnect(session * sess) {}
+	void select_server::on_session_join(session* sess) {}
+	void select_server::on_disconnect(session* sess) {}
 
 	size_t select_server::get_ccu()
 	{

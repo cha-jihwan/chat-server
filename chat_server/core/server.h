@@ -67,7 +67,7 @@ namespace c2 { namespace server { namespace core
 
 		virtual bool on_accept(SOCKET sock) = 0;
 		// session이 accept()된 이후 추가 처리 구현 함수
-		virtual void on_join(session* sess) = 0;
+		virtual void on_session_join(session* sess) = 0;
 		// session이 종료된 이후 추가 처리 구현 함수
 		virtual void on_disconnect(session* sess) = 0;
 

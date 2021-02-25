@@ -83,7 +83,7 @@ namespace c2 { namespace server { namespace contents
 		return true;
 	}
 
-	void chat_server::on_join(session* sess)
+	void chat_server::on_session_join(session* sess)
 	{
 		using namespace c2::server::contents;
 
