@@ -301,6 +301,17 @@ namespace c2 { namespace server { namespace core
 	{
 		crash_if_false(nullptr != sess);
 
+		// 로그인 상태라면?
+		// user 반납.
+		if (e_session_state::LOGINED >= sess->get_state())
+		{
+			chat_user* user = (chat_user*)sess->get_user();
+
+			crash_if_false(nullptr != user);
+
+			this->free_user(user);
+		}
+
 		sess->set_state(e_session_state::CLOSED);
 		
 		on_disconnect(sess);

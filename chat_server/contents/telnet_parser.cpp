@@ -143,7 +143,9 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 	// 중복 로그인 처리...
 	if (e_session_state::LOGINED <= sess->get_state())
 	{
-		chat_user* user = (chat_user*)sess->get_user(); crash_if_false(nullptr);
+		chat_user* user = (chat_user*)sess->get_user(); 
+		
+		crash_if_false(nullptr != user);
 
 		LOG("이미 로그인한 유저 %s님이 재 로그인 시도중입니다.\r\n", user->get_name().c_str());
 
@@ -174,14 +176,15 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 	chat_user* user = reinterpret_cast<chat_user*>(server->allocate_user(user_name));
 	crash_if_false(nullptr != user);
 
-	sess->set_user(user);
 	user->set_session(sess);
 	user->enter_lobby();
+	sess->set_user(user);
+	sess->set_state(e_session_state::LOGINED);
 
 	printf("%s 유저가 로그인 했습니다.\r\n ", user->get_name().c_str());
 
 	// 로그인의 경우 space(1) + id_size + '\r\n';
-	return 1 + name_size + 2;
+	return 0;
 }
 
 size_t telnet_parser::create_room_handler(chat_session* sess, char* in_buffer, size_t size)
