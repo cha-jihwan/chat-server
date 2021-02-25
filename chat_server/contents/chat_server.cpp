@@ -24,11 +24,10 @@ namespace c2 { namespace server { namespace contents
 		g_room_manager = new chat_room_manager();
 
 
-
+		// kick event 알림을 위한 evnet 객체
 		kick_event = CreateEvent(NULL, TRUE, FALSE, NULL);
+		// kick 전용 스레드 생성.
 		kick_thread = new std::thread{ do_kick, kick_event, &to_kick_sockes };
-
-		printf("%p \n", (void*)&to_kick_sockes);
 
 		return true;
 	}
@@ -133,8 +132,6 @@ namespace c2 { namespace server { namespace contents
 	{
 		chat_user* user = active_user_table[name];
 		
-		crash_if_false(nullptr != user);
-
 		return user;
 	}
 
@@ -155,8 +152,6 @@ namespace c2 { namespace server { namespace contents
 	{
 		printf("start kick thread....\n");
 
-		printf("%p \n", (void*)to_kick_sockes);
-
 		for (;;)
 		{
 			size_t ret = WaitForSingleObject(evnt, INFINITE);
@@ -172,7 +167,6 @@ namespace c2 { namespace server { namespace contents
 			else // 깨어나면 가지고 있는 모든 소켓에 대해서 shutdown 처리
 			{
 				SOCKET sock;
-				printf("%d \n", to_kick_sockes->unsafe_size());
 				while(true == to_kick_sockes->try_pop(sock))
 				{
 					// send 이후 

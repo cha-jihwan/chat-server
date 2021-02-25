@@ -62,7 +62,7 @@ namespace c2 { namespace server { namespace contents
 		bounded_object_pool<chat_user, constant::c_maximum_ccu> *	user_pool;
 
 
-		// 킥 처리를 위한...
+		// 킥 처리를 위한 큐.
 		concurrency::concurrent_queue<SOCKET>						to_kick_sockes;
 		HANDLE														kick_event;
 		thread*														kick_thread;

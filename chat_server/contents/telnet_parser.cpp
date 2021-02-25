@@ -67,6 +67,7 @@ void telnet_parser::initialize()
 	//// 채팅
 	packet_handlers.emplace("/C", telnet_parser::chatting_handler);
 	packet_handlers.emplace("/c", telnet_parser::chatting_handler);
+	packet_handlers.emplace("/ㅊ", telnet_parser::chatting_handler);
 
 	//// 룸 목록
 	packet_handlers.emplace("/S", telnet_parser::select_rooms_handler);
@@ -432,6 +433,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	chat_user* target_user = server->find_user_using_name(target_name);
 	if (nullptr == target_user) // 찾는 유저가 없다면?
 	{
+		LOG("%s님이 찾는 유저 %s님이 없습니다.", user->get_name().c_str(), target_name.c_str());
 		// 찾는 상대 유저가 없다는것을 알림.
 		sess->pre_send(not_find_user_msg, sizeof(not_find_user_msg));
 
@@ -482,6 +484,12 @@ size_t telnet_parser::chatting_handler(chat_session* sess, char* in_buffer, size
 	}
 
 	msg_str = &in_buffer[1];
+	if ((size_t)msg_str > (size_t)end_line_str)
+	{
+		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+		return 0;
+	}
+
 	size_t msg_size = end_line_str - msg_str;
 	string msg{ msg_str, msg_size };
 
