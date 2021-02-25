@@ -30,7 +30,7 @@ namespace c2 { namespace server { namespace contents
 	}
 
 
-	chat_room* chat_room_manager::find(const string& name)
+	chat_room* chat_room_manager::find_room_using_name(const string& name)
 	{
 		if (0 < active_room_table.count(name))
 		{

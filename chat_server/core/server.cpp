@@ -278,6 +278,17 @@ namespace c2 { namespace server { namespace core
 		sess->set_socket(connected_sock);
 		sess->set_server(this);
 
+
+		sockaddr_in sock_addr{};
+		int sock_addr_len = sizeof(sock_addr);
+		getsockname(connected_sock, (sockaddr*)&sock_addr, &sock_addr_len);
+
+		end_point client_addr(sock_addr);
+		sess->set_port( client_addr.port());
+		sess->set_ip(std::move(client_addr.ip()));
+
+
+
 		sock_matching_table.emplace(connected_sock, sess);
 
 		on_accept(sess);

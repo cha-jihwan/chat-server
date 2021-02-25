@@ -26,6 +26,17 @@ namespace c2 { namespace server { namespace contents
 		}
 	}
 
+	void chat_lobby::accept_user(chat_user* user)
+	{
+		this->named_users.emplace(user->get_name(), user);
+	}
+
+	void chat_lobby::export_user(chat_user* user)
+	{
+		this->named_users.erase(user->get_name());
+	}
+
+
 	//void lobby::accept_user(chat_user* user)
 	//{
 	//	this->named_users.emplace(user->get_name(), user);

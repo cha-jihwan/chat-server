@@ -28,7 +28,7 @@ namespace c2 { namespace server { namespace contents
 		return chatting_session;
 	}
 
-	i_user * chat_server::allocate_user()
+	i_user* chat_server::allocate_user()
 	{
 		chat_user* chatting_user= user_pool->allocate();
 
@@ -58,19 +58,29 @@ namespace c2 { namespace server { namespace contents
 
 		crash_if_false(nullptr != sess);
 
-		//static char header[120] = "------------------------------------------\n\n\n\n 채팅서버 \n\n 넷마블네오 \n\n ------------------------------------------\n";
-		
+
+		printf("%s:%d session established....\r\n", sess->get_ip().c_str(), sess->get_port());
+
 		sess->pre_send(gui_header, sizeof(gui_header));
+		sess->pre_send(end_msg, 2);
 		sess->pre_send(gui_body, sizeof(gui_body));
+		sess->pre_send(end_msg, 2);
 	}
 
 	void chat_server::on_disconnect(session* sess)
 	{
 		crash_if_false(nullptr != sess);
-		chat_user* user = (chat_user*)sess->get_user();
-		crash_if_false(nullptr != user);
 
-		unregister_user(user);
+		printf("%s:%d session logout....\r\n", sess->get_ip().c_str(), sess->get_port());
+
+		// 유저 종료 처리.
+		e_session_state state = sess->get_state();
+		if (e_session_state::LOGINED <= state)
+		{
+			chat_user* user = (chat_user*)sess->get_user();
+			crash_if_false(nullptr != user);
+			unregister_user(user);
+		}
 	}
 
 	bool chat_server::register_user(chat_user* user)

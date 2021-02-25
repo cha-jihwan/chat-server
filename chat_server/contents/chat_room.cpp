@@ -33,6 +33,18 @@ namespace c2 { namespace server { namespace contents
 		this->name = name;
 	}
 
+	void chat_room::accept_user(chat_user* user)
+	{
+		crash_if_false(nullptr != user);
+		this->user_table.emplace(user->get_name(), user);
+	}
+
+	void chat_room::export_user(chat_user* user)
+	{
+		crash_if_false(nullptr != user);
+		this->user_table.emplace(user->get_name(), user);
+	}
+
 	void chat_room::broadcast(char * msg, size_t msg_size)
 	{
 		for (const auto& kv : user_table)
@@ -49,11 +61,12 @@ namespace c2 { namespace server { namespace contents
 
 	void chat_lobby::accept_user(chat_user* user)
 	{
-		//this->named_users.emplace(user->get_name(), user);
+		this->named_users.emplace(user->get_name(), user);
 	}
 
 	void chat_lobby::export_user(chat_user* user)
 	{
+		this->named_users.erase(user->get_name());
 	}
 
 

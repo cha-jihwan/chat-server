@@ -26,8 +26,7 @@ namespace c2 { namespace server { namespace core
 		else if (received_size == 0) // 끊긴거
 		{
 			server->request_disconnection(this);
-
-			printf("recv err-no %d\n", GetLastError());
+			//printf("recv err-no %d\n", GetLastError());
 		}
 
 		recv_buffer.move_write_head(received_size);
@@ -66,7 +65,7 @@ namespace c2 { namespace server { namespace core
 		size_t sent_size = send_buffer.write(const_cast<char*>(msg), size);
 		if (sent_size != size)
 		{
-			printf("send buffer 사이즈 부족\n");
+			printf("send buffer 사이즈 부족 %s:%d \n", __FUNCSIG__, __LINE__);
 		}
 
 		return sent_size;
@@ -94,7 +93,7 @@ namespace c2 { namespace server { namespace core
 	
 	i_user* session::get_user()
 	{
-		return nullptr;
+		return this->user;
 	}
 
 	e_session_state session::get_state()
@@ -127,6 +126,15 @@ namespace c2 { namespace server { namespace core
 		this->user = user;
 	}
 
+	void session::set_port(uint16_t port)
+	{
+		this->port = port;
+	}
+
+	void session::set_ip(string&& ip)
+	{
+		this->ip = ip;
+	}
 	
 	void session::set_server(select_server* in_server)
 	{

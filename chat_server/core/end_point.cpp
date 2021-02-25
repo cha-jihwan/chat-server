@@ -22,24 +22,23 @@ namespace c2 { namespace server { namespace core
 	//	((sockaddr_in*)&sock_addr)->sin_port = htons(port);
 	//	InetPtonW(AF_INET, address.c_str(), &((sockaddr_in*)&sock_addr)->sin_addr);
 	//}
-	/*
 
-	end_point::end_point(const sockaddr & _sock_addr)
+	end_point::end_point(const sockaddr_in& _sock_addr)
 	{
 		memcpy(&sock_addr, &_sock_addr, sizeof(sockaddr));
 	}
-	*/
 
-	//std::string end_point::ip()
-	//{
-	//	return ::inet_ntoa(reinterpret_cast<sockaddr_in*>(&sock_addr)->sin_addr);
-	//}
+	std::string end_point::ip()
+	{
+		char addr_str_buf[32]{};
+		return ::inet_ntop(AF_INET, reinterpret_cast<sockaddr_in*>(((char*)&sock_addr.sa_data) + 2), addr_str_buf, sizeof(addr_str_buf));
+	}
 
 	////
-	//const std::string end_point::to_string()
-	//{
-	//	return std::string(this->ip()) + ":" + std::to_string(this->port());
-	//}
+	const std::string end_point::to_string()
+	{
+		return std::string(this->ip()) + ":" + std::to_string(this->port());
+	}
 
 
 	const uint16_t end_point::port()

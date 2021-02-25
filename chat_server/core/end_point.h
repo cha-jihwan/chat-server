@@ -8,7 +8,7 @@ namespace c2 { namespace server { namespace core
 		//end_point(uint32_t address, uint16_t port);
 		end_point(const std::string& address, uint16_t c_port);
 		//end_point(const wstring& address, uint16_t port);
-		//end_point(const sockaddr& _sock_addr);
+		end_point(const sockaddr_in& _sock_addr);
 		
 		const size_t size() const;
 		sockaddr* get_as_sockaddr();
@@ -16,7 +16,7 @@ namespace c2 { namespace server { namespace core
 		
 		const std::string to_string();
 		const uint16_t port();
-		//std::string ip();
+		std::string ip();
 
 	private:
 		sockaddr sock_addr;

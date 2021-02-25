@@ -13,11 +13,15 @@ namespace c2 { namespace server { namespace contents
 		chat_room* allocate();
 		void free(chat_room* room);
 
+
+		// 방 이름을 통해 방을 찾습니다.
+		// param name : 방 이름
 		// return value 
 		// if	nullptr 이름에 맞는 방이 없는 경우
 		// else			찾은 방을 리턴
-		//		
-		chat_room* find(const string& name);
+		chat_room* find_room_using_name(const string& name);
+		
+		// 
 		string&& get_active_room_list_to_string();
 
 	private:

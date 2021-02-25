@@ -23,9 +23,9 @@ namespace c2 { namespace server { namespace contents
 
 	void chat_user::leave_room()
 	{
-		state = e_user_state::US_NONE;
+		state = e_user_state::US_IN_LOBBY;
 
-		//room->export_user(this);
+		room->export_user(this);
 		// room에서 내가 방에 아무도 없는 경우 방 반납.
 	}
 

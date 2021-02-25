@@ -37,7 +37,7 @@ namespace c2 { namespace server { namespace contents
 		std::string name;
 		e_user_state state;
 		chat_room* room;
-	};
+	}; // class chat_user 
 } // namespace contents
 } // namespace server
 } // namespace c2

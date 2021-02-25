@@ -20,9 +20,9 @@ namespace c2 { namespace server { namespace core
 		enum class e_session_state
 		{
 			INITIALIZED, 
+			CLOSED,		// 
 			ESTABLISHED,// 연결 후, user 할당 전
 			LOGINED,	// user 할당 이후
-			CLOSED,		// 
 			STATE_MAX,
 		};
 
