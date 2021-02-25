@@ -5,7 +5,7 @@
 namespace c2 { namespace server { namespace contents
 {
 	extern char gui_header[205];
-	extern char gui_body[198];
+	extern char gui_body[201];
 	extern char end_msg[2];
 
 	// for enter room

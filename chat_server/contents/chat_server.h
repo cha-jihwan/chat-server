@@ -10,7 +10,7 @@ namespace c2 { namespace server { namespace contents
 
 		virtual bool initialize_contents();
 		virtual session* allocate_session() override final;
-		virtual i_user* allocate_user()     override final;
+		virtual i_user* allocate_user(const string& user_name) override final;
 
 		virtual void free_session(session* sess) override final; 
 		virtual void free_user(i_user* user)     override final;
@@ -20,14 +20,14 @@ namespace c2 { namespace server { namespace contents
 
 		// user 를 active_table에 추가.
 		// 삽입이 되었다면 true를 리턴.
-		bool register_user(chat_user* user);
+		bool register_user(const string& user_name, chat_user* user);
 
 		// user 를 active_table에 추가.
 		// 삽입이 되었다면 true를 리턴.
 		void unregister_user(chat_user* user);
 
 		chat_user*	get_user(const string& name);
-		string&&	get_active_user_to_string();
+		string		get_active_user_to_string();
 
 	private:
 		unordered_map<string, chat_user*>		active_user_table;

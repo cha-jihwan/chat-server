@@ -15,7 +15,7 @@ namespace c2 { namespace server { namespace contents
 		return name;
 	}
 
-	string && chat_room::get_user_list_in_room_to_string()
+	string chat_room::get_user_list_in_room_to_string()
 	{
 		string user_list;
 
@@ -28,7 +28,7 @@ namespace c2 { namespace server { namespace contents
 		return std::move(user_list);
 	}
 
-	void chat_room::set_name(std::string&& name)
+	void chat_room::set_name(const std::string& name)
 	{
 		this->name = name;
 	}
@@ -59,16 +59,15 @@ namespace c2 { namespace server { namespace contents
 		}
 	}
 
-	void chat_lobby::accept_user(chat_user* user)
+	size_t chat_room::get_size()
 	{
-		this->named_users.emplace(user->get_name(), user);
+		return user_table.size();
 	}
 
-	void chat_lobby::export_user(chat_user* user)
+	size_t chat_room::get_capacity()
 	{
-		this->named_users.erase(user->get_name());
+		return size_t();
 	}
-
 
 }// c2
 }// server 

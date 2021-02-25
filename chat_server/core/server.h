@@ -36,7 +36,7 @@ namespace c2 { namespace server { namespace core
 		virtual void finalize_contents();
 
 		virtual session* allocate_session() = 0;
-		virtual i_user* allocate_user() = 0;
+		virtual i_user* allocate_user(const string& user_name) = 0;
 
 		virtual void free_session(session* sess) = 0;
 		virtual void free_user(i_user* user)     = 0;

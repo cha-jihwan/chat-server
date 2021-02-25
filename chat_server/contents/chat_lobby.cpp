@@ -37,12 +37,6 @@ namespace c2 { namespace server { namespace contents
 	}
 
 
-	//void lobby::accept_user(chat_user* user)
-	//{
-	//	this->named_users.emplace(user->get_name(), user);
-	//}
-
-
 } // contents
 } // server
 } // c2

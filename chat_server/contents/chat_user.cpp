@@ -10,23 +10,33 @@ namespace c2 { namespace server { namespace contents
 	void chat_user::update_logic()
 	{}
 
-	void chat_user::enter_room(const string & room_name)
+	void chat_user::enter_room(const string& room_name)
 	{
 		leave_lobby();
 
-		// room name 으로 방 찾기
-		// nullptr 체크
+		chat_room* room = g_room_manager->find_room_using_name(room_name);
+		crash_if_false(nullptr != room);
+
 		state = e_user_state::US_IN_ROOM;
 
-		// 접속 unordered_map
+		this->room = room;
+		room->accept_user(this);
 	}
 
 	void chat_user::leave_room()
 	{
-		state = e_user_state::US_IN_LOBBY;
-
+		// 룸 나가는 처리
 		room->export_user(this);
+
 		// room에서 내가 방에 아무도 없는 경우 방 반납.
+		if (0 == room->get_size())
+		{
+			g_room_manager->free(room);
+		}
+
+		// 로비 접속 처리
+		g_lobby->accept_user(this);
+		state = e_user_state::US_IN_LOBBY;
 	}
 
 	void chat_user::enter_lobby()
@@ -69,7 +79,7 @@ namespace c2 { namespace server { namespace contents
 		this->state = new_state;
 	}
 
-	void chat_user::set_name(string&& name)
+	void chat_user::set_name(const string& name)
 	{
 		this->name = name;
 	}

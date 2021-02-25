@@ -13,11 +13,13 @@ namespace c2 { namespace server { namespace contents
 	{
 	}
 
-	chat_room* chat_room_manager::allocate()
+	chat_room* chat_room_manager::allocate(const string& room_name)
 	{
 		chat_room* chatting_room = room_pool.allocate();
 
 		crash_if_false(nullptr != chatting_room);
+
+		active_room_table.emplace(room_name, chatting_room);
 
 		return chatting_room;
 	}
@@ -26,13 +28,16 @@ namespace c2 { namespace server { namespace contents
 	{
 		crash_if_false(nullptr != room);
 
+		active_room_table.erase(room->get_name());
+
 		room_pool.free(room);
 	}
 
 
+
 	chat_room* chat_room_manager::find_room_using_name(const string& name)
 	{
-		if (0 < active_room_table.count(name))
+		if (0 >= active_room_table.count(name))
 		{
 			return nullptr;
 		}
@@ -40,9 +45,9 @@ namespace c2 { namespace server { namespace contents
 		return active_room_table[name];
 	}
 
-	string&& chat_room_manager::get_active_room_list_to_string()
+	string chat_room_manager::get_active_room_list_to_string()
 	{
-		std::string room_list_str;
+		std::string room_list_str = "";
 
 		for (const auto& kv : active_room_table)
 		{
@@ -54,6 +59,7 @@ namespace c2 { namespace server { namespace contents
 
 		return std::move(room_list_str);
 	}
+
 } // namespace contents
 } // namespace server
 } // namespace c2

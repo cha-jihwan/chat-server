@@ -10,7 +10,7 @@ namespace c2 { namespace server { namespace contents
 		chat_room_manager();
 		~chat_room_manager();
 
-		chat_room* allocate();
+		chat_room* allocate(const string& room_name);
 		void free(chat_room* room);
 
 
@@ -22,7 +22,7 @@ namespace c2 { namespace server { namespace contents
 		chat_room* find_room_using_name(const string& name);
 		
 		// 
-		string&& get_active_room_list_to_string();
+		string get_active_room_list_to_string();
 
 	private:
 		unordered_map<string, chat_room*> active_room_table;

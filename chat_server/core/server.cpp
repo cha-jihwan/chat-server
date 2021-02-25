@@ -144,7 +144,7 @@ namespace c2 { namespace server { namespace core
 		return nullptr;
 	}
 
-	i_user * select_server::allocate_user()
+	i_user* select_server::allocate_user(const string& user_name)
 	{
 		return nullptr;
 	}

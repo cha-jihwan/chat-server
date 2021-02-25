@@ -24,7 +24,7 @@ namespace c2 { namespace server { namespace contents
 
 		// setter
 		void set_state(e_user_state);
-		void set_name(string&& name);
+		void set_name(const string& name);
 
 		void enter_room(const string& room_name);
 		void leave_room();

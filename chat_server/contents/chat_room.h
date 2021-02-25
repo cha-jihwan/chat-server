@@ -9,18 +9,21 @@ namespace c2 { namespace server { namespace contents
 		chat_room();
 		~chat_room();
 
-		string&& get_user_list_in_room_to_string();
+		string get_user_list_in_room_to_string();
 
 		//getter
 		const string& get_name();
 
 		//setter
-		void set_name(std::string&& name);
+		void set_name(const std::string& name);
 
 		void accept_user(chat_user* user);
 		void export_user(chat_user* user);
 		
 		void broadcast(char* msg, size_t msg_size);
+
+		size_t get_size();
+		size_t get_capacity();
 
 	private:
 		unordered_map<string, chat_user*> user_table;

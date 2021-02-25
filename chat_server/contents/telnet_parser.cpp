@@ -56,6 +56,14 @@ void telnet_parser::initialize()
 	packet_handlers.emplace("/R", telnet_parser::create_room_handler);
 	packet_handlers.emplace("/r", telnet_parser::create_room_handler);
 
+	//// 방 접속
+	packet_handlers.emplace("/Q", telnet_parser::enter_room_handler);
+	packet_handlers.emplace("/q", telnet_parser::enter_room_handler);
+
+	//// 방 나가기
+	packet_handlers.emplace("/E", telnet_parser::leave_room_handler);
+	packet_handlers.emplace("/e", telnet_parser::leave_room_handler);
+
 	//// 채팅
 	packet_handlers.emplace("/C", telnet_parser::chatting_handler);
 	packet_handlers.emplace("/c", telnet_parser::chatting_handler);
@@ -141,24 +149,23 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 		return 0;
 	}
 
-	size_t id_size = end_line_str - id_str;
-	string id {id_str, id_size};
+	size_t name_size = end_line_str - id_str;
+	string user_name {id_str, name_size};
 
 	// user 할당.
 	chat_server* server = reinterpret_cast<chat_server*>(sess->get_server());
 	crash_if_false(nullptr != server);
-	chat_user* user = reinterpret_cast<chat_user*>(server->allocate_user());
+	chat_user* user = reinterpret_cast<chat_user*>(server->allocate_user(user_name));
 	crash_if_false(nullptr != user);
 
 	sess->set_user(user);
 	user->set_session(sess);
-	user->set_name(std::move(id));
 	user->enter_lobby();
 
 	printf("%s 유저가 로그인 했습니다.\r\n ", user->get_name().c_str());
 
 	// 로그인의 경우 space(1) + id_size + '\r\n';
-	return 1 + id_size + 2;
+	return 1 + name_size + 2;
 }
 
 size_t telnet_parser::create_room_handler(chat_session* sess, char* in_buffer, size_t size)
@@ -181,10 +188,12 @@ size_t telnet_parser::create_room_handler(chat_session* sess, char* in_buffer, s
 
 
 	// user lobby 접속 처리.
-	chat_room* room = g_room_manager->allocate();
+	chat_room* room = g_room_manager->allocate(room_name);
 	if (nullptr == room) // room 64개가 전부 할당 된 경우...
 	{
 		// 안내 메시지 출력.
+		printf("방 생성을 더 이상 할 수 없습니다.\r\n", room_name.c_str() );
+		
 		sess->pre_send(room_full_msg, sizeof(room_full_msg));
 	}
 	else // 방 접속 가능시...
@@ -260,10 +269,9 @@ size_t telnet_parser::leave_room_handler(chat_session* sess, char* in_buffer, si
 	chat_user* user = (chat_user*)sess->get_user();
 	crash_if_false(nullptr != user);
 
-	// 내가 방에 없는 경우...
-	if (e_user_state::US_IN_ROOM != user->get_state())
+	
+	if (e_user_state::US_IN_ROOM != user->get_state()) // 내가 방에 없는 경우...
 	{
-		// 안내 메시지 출력.
 		sess->pre_send(not_in_room_msg, sizeof(not_in_room_msg)); // 안내 메시지 출력.
 	}
 	else // 내가 방에 있는 경우...
@@ -293,7 +301,7 @@ size_t telnet_parser::select_rooms_handler(chat_session* sess, char* in_buffer, 
 	crash_if_false(nullptr != user);
 
 	// 방 리스트...
-	string active_room_list = g_room_manager->get_active_room_list_to_string();
+	string&& active_room_list = g_room_manager->get_active_room_list_to_string();
 	if (active_room_list == "")
 	{
 		active_room_list = "현재 생성된 방이 없습니다.\r\n";
@@ -355,43 +363,27 @@ size_t telnet_parser::select_all_handler(chat_session* sess, char* in_buffer, si
 		return 0;
 	}
 
-	char carage_return = in_buffer[1];
-	if ('\r' != carage_return)
-	{
-		return 0;
-	}
-	 
+	//char carage_return = in_buffer[1];
+	//if ('\r' != carage_return)
+	//{
+	//	return 0;
+	//}
 
 	// user를 구하고...
-	chat_user* user = (chat_user*)sess->get_user();
-	crash_if_false(nullptr != user);
 	chat_server* server = (chat_server*)sess->get_server();
 	crash_if_false(nullptr != server);
 
 
-	//chat_room* room = (chat_room*)user->get_room();
-	//crash_if_false(nullptr != room);
-
-
-	if (e_user_state::US_IN_ROOM != user->get_state()) // 내가 방에 없는 경우...
+	string all_user_list = server->get_active_user_to_string();
+	if (all_user_list == "")
 	{
-		sess->pre_send(not_in_room_msg, sizeof(not_in_room_msg)); // 안내 메시지 출력.
-	}
-	else // 내가 방에 있는 경우...
-	{
-		// 방 리스트...
-		string all_user_list = server->get_active_user_to_string();
-		if (all_user_list == "")
-		{
-			// 나까지 로그인 안한 상태...
-			all_user_list = "현재 유저가 없습니다.\r\n";
-		}
-
-		sess->pre_send(all_user_list.c_str(), all_user_list.size()); // 안내 메시지 출력.
+		// 나까지 로그인 안한 상태...
+		all_user_list = "현재 유저가 없습니다.\r\n";
 	}
 
+	sess->pre_send(all_user_list.c_str(), all_user_list.size()); // 안내 메시지 출력.
 
-	// 방속 유저 목록 조회의 경우 '\r\n'(2byte);
+
 	return 2;
 }
 

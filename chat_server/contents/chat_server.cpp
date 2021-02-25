@@ -28,11 +28,15 @@ namespace c2 { namespace server { namespace contents
 		return chatting_session;
 	}
 
-	i_user* chat_server::allocate_user()
+	i_user* chat_server::allocate_user(const string& user_name)
 	{
 		chat_user* chatting_user= user_pool->allocate();
 
 		crash_if_false(nullptr != chatting_user);
+
+		chatting_user->set_name(user_name);
+
+		register_user(user_name, chatting_user);
 
 		return chatting_user;
 	}
@@ -48,6 +52,8 @@ namespace c2 { namespace server { namespace contents
 	void chat_server::free_user(i_user* user)
 	{
 		crash_if_false(nullptr != user);
+
+		unregister_user((chat_user*)user);
 
 		user_pool->free((chat_user*)user);
 	}
@@ -83,12 +89,12 @@ namespace c2 { namespace server { namespace contents
 		}
 	}
 
-	bool chat_server::register_user(chat_user* user)
+	bool chat_server::register_user(const string& user_name, chat_user* user)
 	{
 		crash_if_false(nullptr != user);
 
 		// 삽입이 되었다면 true를 리턴
-		return active_user_table.emplace(user->get_name(), user).second;
+		return active_user_table.emplace(user_name, user).second;
 	}
 
 	void chat_server::unregister_user(chat_user * user)
@@ -101,7 +107,7 @@ namespace c2 { namespace server { namespace contents
 		return active_user_table[name];
 	}
 
-	string&& chat_server::get_active_user_to_string()
+	string chat_server::get_active_user_to_string()
 	{
 		string active_user_list;
 
