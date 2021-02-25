@@ -4,13 +4,9 @@ namespace c2 { namespace server { namespace contents
 {
 	chat_lobby* g_lobby{};
 
-	chat_lobby::chat_lobby()
-	{
-	}
+	chat_lobby::chat_lobby() {}
 
-	chat_lobby::~chat_lobby()
-	{
-	}
+	chat_lobby::~chat_lobby() {}
 
 	void chat_lobby::broadcast(char * msg, size_t msg_size)
 	{

@@ -6,9 +6,9 @@ namespace c2 { namespace server { namespace core
 
 	session::session()
 		: state{ e_session_state::INITIALIZED }
-		, user{}, server{}
 		, sock{ INVALID_SOCKET }
 		, ip{}, port{}
+		, user{}, server{}
 	{}
 	
 	session::~session() {}

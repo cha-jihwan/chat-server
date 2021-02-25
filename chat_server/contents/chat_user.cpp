@@ -2,7 +2,7 @@
 
 namespace c2 { namespace server { namespace contents 
 {
-	chat_user::chat_user() : room{}
+	chat_user::chat_user() : room{}, state{e_user_state::US_NONE}
 	{}
 	chat_user::~chat_user() {}
 	

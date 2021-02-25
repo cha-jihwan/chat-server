@@ -6,7 +6,9 @@ namespace c2 { namespace server { namespace core
 		: listen_sock{ INVALID_SOCKET }
 		, ip{}, port{}
 		, generated_session_id{}
-	{}
+	{
+		to_disconnect_sessions.reserve(c_maximum_ccu);
+	}
 
 	select_server::~select_server() {}
 
