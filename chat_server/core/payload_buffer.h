@@ -86,7 +86,8 @@ public:
 	{
 		size_t size = this->write_head - this->read_head;
 		// Á¤¸®.
-		memcpy(this->buffer, &this->buffer[this->read_head], size);
+		memmove(this->buffer, &this->buffer[this->read_head], size);
+
 		this->read_head = 0;
 		this->write_head = size;
 	}

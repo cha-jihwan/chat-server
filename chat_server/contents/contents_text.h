@@ -10,6 +10,8 @@ namespace c2 { namespace server { namespace contents
 	extern char room_full_msg[62];
 	extern char enter_room_msg[32];
 
+	extern char overlapped_login_msg[32];
+
 	extern char not_find_room_msg[27];
 	extern char not_in_room_msg[41];
 	extern char leave_user_from_room_msg[35];

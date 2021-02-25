@@ -136,19 +136,33 @@ char* telnet_parser::find_enter_from_payload(char* in_payload, size_t in_size)
 
 size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t size)
 {
-	// sess는 0이 아니라고 가정.
+	// in_buffer는 0이 아니라고 가정.
 	// (sess + in_buffer) != in_buffer 이라면 sess는 nullptr이 아니다.
 	crash_if_false(((size_t)(sess)+(size_t)in_buffer) != (size_t)in_buffer);
-	
+
+	// 중복 로그인 처리...
+	if (e_session_state::LOGINED <= sess->get_state())
+	{
+		chat_user* user = (chat_user*)sess->get_user(); crash_if_false(nullptr);
+
+		LOG("이미 로그인한 유저 %s님이 재 로그인 시도중입니다.\r\n", user->get_name().c_str());
+
+		return 0;
+	}
+
+
 	// space 넘기
 	char* id_str = &in_buffer[1];
 	size -= 1;
 
 	char* end_line_str = telnet_parser::find_enter_from_payload(id_str, size);
-	if (nullptr == end_line_str)
+	if (nullptr == end_line_str) // 잘못된 명령어 처리.
 	{
+		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+
 		return 0;
 	}
+
 
 	size_t name_size = end_line_str - id_str;
 	string user_name {id_str, name_size};
@@ -156,6 +170,7 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 	// user 할당.
 	chat_server* server = reinterpret_cast<chat_server*>(sess->get_server());
 	crash_if_false(nullptr != server);
+
 	chat_user* user = reinterpret_cast<chat_user*>(server->allocate_user(user_name));
 	crash_if_false(nullptr != user);
 
@@ -282,7 +297,7 @@ size_t telnet_parser::leave_room_handler(chat_session* sess, char* in_buffer, si
 	}
 	
 	// 방 떠나기의 경우 '\r\n'(2byte);
-	return 2;
+	return 0;
 }
 
 
@@ -419,7 +434,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	{
 		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
 
-		return (end_line_str + 2) - in_buffer;
+		return 0;
 	}
 
 

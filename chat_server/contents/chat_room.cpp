@@ -42,7 +42,7 @@ namespace c2 { namespace server { namespace contents
 	void chat_room::export_user(chat_user* user)
 	{
 		crash_if_false(nullptr != user);
-		this->user_table.emplace(user->get_name(), user);
+		this->user_table.erase(user->get_name());
 	}
 
 	void chat_room::broadcast(char * msg, size_t msg_size)
