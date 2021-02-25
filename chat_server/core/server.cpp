@@ -7,6 +7,8 @@ namespace c2 { namespace server { namespace core
 		, ip{}, port{}
 		, generated_session_id{}
 	{
+		// 최대 사용 크기 미리 예약
+		// 재할당을 막는다.
 		to_disconnect_sessions.reserve(c_maximum_ccu);
 	}
 
@@ -27,14 +29,18 @@ namespace c2 { namespace server { namespace core
 	{
 		printf("start...\n");
 
-		// timer가 필요한가...
+		
 		for (;;)
 		{
-			try_accept(); // accept 처리
-			try_receive_all_sessions(); // recv 처리
+			// accept 처리
+			try_accept();				
+			// recv 처리
+			try_receive_all_sessions(); 
 			update_logic();
-			try_send_all_sessions(); // send 처리
-			lazy_disconnect();
+			// 모든 보낼 데이터가 있는 세션에 대한 send 처리.
+			try_send_all_sessions();	
+			// 모든 처리 작업이 끝난 이후 세션 종료 처리.
+			lazy_disconnect();			
 		}
 	}
 
@@ -90,7 +96,7 @@ namespace c2 { namespace server { namespace core
 
 		// bind()
 		end_point end_point(constant::c_ip , constant::c_port);
-		int retval = bind(listen_sock, end_point.get_as_sockaddr(), (int)end_point.size());
+		int retval = ::bind(listen_sock, end_point.get_as_sockaddr(), (int)end_point.size());
 		if (retval == SOCKET_ERROR)
 		{
 			printf("bind() error in initialize_core() err-code : %d", GetLastError());
@@ -233,18 +239,14 @@ namespace c2 { namespace server { namespace core
 			printf("accept() error : %d all new session()\n", GetLastError());
 		}
 
-
-///////////////////////////////
-		// 미구현 : kick 처리
-		if ( constant::c_maximum_ccu <= sock_matching_table.size() )
+		// 상속된 서버에서 처리.
+		if (false == on_accept(client_sock))
 		{
-			// kick 처리...
-			// thread 만들어서 처리....
-			// 
-
 			return;
 		}
-///////////////////////////////
+
+		// sesion 할당 및 세션 세팅
+		// 서버에 가입.
 		register_session_after_allocate(client_sock);
 	}
 
@@ -291,7 +293,7 @@ namespace c2 { namespace server { namespace core
 
 		sock_matching_table.emplace(connected_sock, sess);
 
-		on_accept(sess);
+		on_join(sess);
 	}
 
 	// session 종료 처리 
@@ -311,8 +313,14 @@ namespace c2 { namespace server { namespace core
 	// 가상 함수 인터페이스 들...
 	void select_server::free_session(session * sess) {}
 	void select_server::free_user(i_user * user) {}
-	void select_server::on_accept(session * sess) {}
+	bool select_server::on_accept(SOCKET sock) { return false; }
+	void select_server::on_join(session * sess) {}
 	void select_server::on_disconnect(session * sess) {}
+
+	size_t select_server::get_ccu()
+	{
+		return sock_matching_table.size();
+	}
 
 } // namespace core
 } // namespace server

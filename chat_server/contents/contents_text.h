@@ -24,6 +24,7 @@ namespace c2 { namespace server { namespace contents
 	extern char leave_room_msg2[22];
 
 	extern char before_login_msg[48];
+	extern char kick_message[58];
 
 } // namespace contents
 } // namespace server

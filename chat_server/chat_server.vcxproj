@@ -40,6 +40,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="util\crash.h" />
     <ClInclude Include="util\dump.h" />
+    <ClInclude Include="util\log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="contents\chat_lobby.cpp" />
@@ -60,6 +61,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="util\crash.cpp" />
     <ClCompile Include="util\dump.cpp" />
+    <ClCompile Include="util\log.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EAED6725-827D-4F27-B83A-7150421AE9C2}</ProjectGuid>

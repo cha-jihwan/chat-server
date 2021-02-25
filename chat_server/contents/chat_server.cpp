@@ -1,11 +1,15 @@
 #include "../common/pre_compile.h"
+#include "chat_server.h"
 
 
 namespace c2 { namespace server { namespace contents 
 {
 	chat_server::chat_server() 
 		: session_pool{}, user_pool{}
-	{}	  
+		, kick_event{ INVALID_HANDLE_VALUE }
+		, kick_thread{ nullptr }
+	{
+	}	  
 
 	chat_server::~chat_server()  {}
 
@@ -18,6 +22,13 @@ namespace c2 { namespace server { namespace contents
 
 		g_lobby = new chat_lobby();
 		g_room_manager = new chat_room_manager();
+
+
+
+		kick_event = CreateEvent(NULL, TRUE, FALSE, NULL);
+		kick_thread = new std::thread{ do_kick, kick_event, &to_kick_sockes };
+
+		printf("%p \n", (void*)&to_kick_sockes);
 
 		return true;
 	}
@@ -61,12 +72,23 @@ namespace c2 { namespace server { namespace contents
 		user_pool->free((chat_user*)user);
 	}
 
-	void chat_server::on_accept(session* sess)
+	bool chat_server::on_accept(SOCKET sock)
+	{
+		size_t ccu = this->get_ccu();
+		if (ccu + 1 > c_maximum_ccu)
+		{
+			request_kick_socket(sock);
+			return false;
+		}
+
+		return true;
+	}
+
+	void chat_server::on_join(session* sess)
 	{
 		using namespace c2::server::contents;
 
 		crash_if_false(nullptr != sess);
-
 
 		printf("%s:%d session established....\r\n", sess->get_ip().c_str(), sess->get_port());
 
@@ -107,7 +129,7 @@ namespace c2 { namespace server { namespace contents
 		active_user_table.erase(user->get_name());
 	}
 
-	chat_user* chat_server::get_user(const string& name)
+	chat_user* chat_server::find_user_using_name(const string& name)
 	{
 		chat_user* user = active_user_table[name];
 		
@@ -128,6 +150,56 @@ namespace c2 { namespace server { namespace contents
 
 		return std::move(active_user_list);
 	}
+
+	void chat_server::do_kick(HANDLE evnt, concurrency::concurrent_queue<SOCKET>* to_kick_sockes)
+	{
+		printf("start kick thread....\n");
+
+		printf("%p \n", (void*)to_kick_sockes);
+
+		for (;;)
+		{
+			size_t ret = WaitForSingleObject(evnt, INFINITE);
+			if (ret == WAIT_FAILED) //HANDLE이 Invalid 할 경우
+			{
+				LOG("kcik_event WAIT_FAILED\r\n");
+				break;
+			}
+			if (ret == WAIT_TIMEOUT) //TIMEOUT시 명령
+			{
+				continue;
+			}
+			else // 깨어나면 가지고 있는 모든 소켓에 대해서 shutdown 처리
+			{
+				SOCKET sock;
+				printf("%d \n", to_kick_sockes->unsafe_size());
+				while(true == to_kick_sockes->try_pop(sock))
+				{
+					// send 이후 
+					if (sizeof(kick_message) != send(sock, kick_message, sizeof(kick_message), NULL))
+					{
+						LOG("sent size err-no : %d \r\n", GetLastError());
+					}
+
+					// 종료 유도..
+					shutdown(sock, SD_SEND);
+					printf("동접을 초과한 유저를 처리했습니다. \r\n");
+				}
+			}
+
+			ResetEvent(evnt); //Event Object Nonsignaled 상태로 변환
+		}
+
+		printf("stop kick thread....\n");
+	}
+
+	void chat_server::request_kick_socket(SOCKET sock)
+	{
+		to_kick_sockes.push(sock);
+		
+		SetEvent(kick_event);
+	}
+
 } // namespace contents
 } // namespace server
 } // namespace c2

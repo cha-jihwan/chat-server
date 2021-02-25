@@ -89,6 +89,9 @@
     <ClInclude Include="main.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="util\log.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="contents\chat_lobby.cpp">
@@ -144,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="contents\chat_room.cpp">
       <Filter>contents</Filter>
+    </ClCompile>
+    <ClCompile Include="util\log.cpp">
+      <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -26,6 +26,8 @@ namespace c2 { namespace server { namespace contents
 
 	char clear_console[73] = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
 
+
+	char kick_message[58] = "더 이상 들어올 수 없습니다. 다음에 다시 이용해주세요.\r\n\0\0";
 } // namespace contents
 } // namespace server
 } // namespace 

@@ -1,45 +1,29 @@
-﻿  session.cpp
+﻿  chat_server.cpp
 c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
 c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
 c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(19): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(51): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(116): warning C4458: 'state' 선언은 클래스 멤버를 숨깁니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.h(58): note: 'c2::server::core::session::state' 선언을 참조하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(122): warning C4458: 'user' 선언은 클래스 멤버를 숨깁니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.h(62): note: 'c2::server::core::session::user' 선언을 참조하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(129): warning C4458: 'port' 선언은 클래스 멤버를 숨깁니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.h(60): note: 'c2::server::core::session::port' 선언을 참조하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(134): warning C4458: 'ip' 선언은 클래스 멤버를 숨깁니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.h(59): note: 'c2::server::core::session::ip' 선언을 참조하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(139): warning C4267: '+=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(138): note: 클래스 템플릿 멤버 함수 'void payload_buffer<65536>::move_write_head(std::size_t)'을(를) 컴파일하고 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(32): note: 컴파일 중인 함수 템플릿 인스턴스화 'void payload_buffer<65536>::move_write_head(std::size_t)'에 대한 참조를 확인하십시오.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.h(53): note: 컴파일 중인 클래스 템플릿 인스턴스화 'payload_buffer<65536>'에 대한 참조를 확인하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(133): warning C4267: '+=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(132): note: 클래스 템플릿 멤버 함수 'void payload_buffer<65536>::move_read_head(std::size_t)'을(를) 컴파일하고 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(58): note: 컴파일 중인 함수 템플릿 인스턴스화 'void payload_buffer<65536>::move_read_head(std::size_t)'에 대한 참조를 확인하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(91): warning C4267: '=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(86): note: 클래스 템플릿 멤버 함수 'void payload_buffer<65536>::rewind(void)'을(를) 컴파일하고 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(60): note: 컴파일 중인 함수 템플릿 인스턴스화 'void payload_buffer<65536>::rewind(void)'에 대한 참조를 확인하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(57): warning C4267: '+=': 'size_t'에서 'uint32_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\payload_buffer.h(48): note: 클래스 템플릿 멤버 함수 'size_t payload_buffer<65536>::write(void *,std::size_t)'을(를) 컴파일하고 있습니다.
-  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\session.cpp(65): note: 컴파일 중인 함수 템플릿 인스턴스화 'size_t payload_buffer<65536>::write(void *,std::size_t)'에 대한 참조를 확인하십시오.
-  server.cpp
+c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\contents\chat_server.cpp(176): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'Concurrency::concurrent_queue<SOCKET,std::allocator<_Ty>>::std::size_type'입니다.
+          with
+          [
+              _Ty=SOCKET
+          ]
+  c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\contents\chat_server.cpp(176): note: 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  main.cpp
 c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(1544): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
 c:\program files (x86)\windows kits\8.1\include\um\dbghelp.h(3190): warning C4091: 'typedef ': 변수를 선언하지 않으면 '' 왼쪽은 무시됩니다.
 c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\object_pool.hpp : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\server.cpp(149): warning C4100: 'user_name': 참조되지 않은 정식 매개 변수입니다.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\server.cpp(312): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\server.cpp(313): warning C4100: 'user': 참조되지 않은 정식 매개 변수입니다.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\server.cpp(314): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
-c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\server.cpp(315): warning C4100: 'sess': 참조되지 않은 정식 매개 변수입니다.
+c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\main.cpp(18): warning C4305: 'return': '__int64'에서 'int'(으)로 잘립니다.
+c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\main.cpp(18): warning C4309: 'return': 상수 값이 잘립니다.
   코드를 생성하고 있습니다...
   건너뛰고 있습니다... (관련된 변경 내용 없음)
+  log.cpp
   dump.cpp
   crash.cpp
-  main.cpp
   user_interface.cpp
+  session.cpp
+  server.cpp
   protocol.cpp
   payload_buffer.cpp
   environment.cpp
@@ -48,7 +32,6 @@ c:\users\jihwan.cha\documents\github\chat\chat-server\chat_server\core\server.cp
   contents_text.cpp
   chat_user.cpp
   chat_session.cpp
-  chat_server.cpp
   chat_room_manager.cpp
   chat_room.cpp
   chat_lobby.cpp

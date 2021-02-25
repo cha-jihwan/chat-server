@@ -429,7 +429,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	chat_server* server = (chat_server*)sess->get_server();
 	crash_if_false(nullptr != server);
 
-	chat_user* target_user = server->get_user(target_name);
+	chat_user* target_user = server->find_user_using_name(target_name);
 	if (nullptr == target_user) // 찾는 유저가 없다면?
 	{
 		// 찾는 상대 유저가 없다는것을 알림.
