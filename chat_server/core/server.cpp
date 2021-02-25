@@ -149,8 +149,6 @@ namespace c2 { namespace server { namespace core
 		return nullptr;
 	}
 
-
-
 	void select_server::try_accept()
 	{
 		FD_SET read_set{ 1, {this->listen_sock} };

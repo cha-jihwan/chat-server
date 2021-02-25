@@ -94,7 +94,7 @@ void telnet_parser::initialize()
 //// 문자를 찾는다면 위치 시작 지점.
 char* telnet_parser::find_space_from_payload(char* in_buf, size_t in_size)
 {
-	for (size_t n{}; n < in_size; ++n, ++in_buf)
+	for (size_t n{}; n < in_size; ++n)
 	{
 		if (in_buf[n] == ' ')
 		{
@@ -369,7 +369,6 @@ size_t telnet_parser::select_all_handler(chat_session* sess, char* in_buffer, si
 	//	return 0;
 	//}
 
-	// user를 구하고...
 	chat_server* server = (chat_server*)sess->get_server();
 	crash_if_false(nullptr != server);
 
@@ -393,18 +392,26 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 {
 	crash_if_false(((size_t)(sess)+(size_t)in_buffer) != (size_t)in_buffer);
 
+	// user를 구하고
+	chat_user* user = (chat_user*)sess->get_user();
+	crash_if_false(nullptr != user);
+
 	// space 넘기 + 1byte
 	char* target_name_str = &in_buffer[1];
 	size -= 1;
 
+
+
 	//명령어 끝
-	char* end_line_str = telnet_parser::find_enter_from_payload(in_buffer, size);
-	if (nullptr == end_line_str) // 명령어 완성 X 
+	char* end_line_str = telnet_parser::find_enter_from_payload(target_name_str, size);
+	if (nullptr == end_line_str) // 이상한 명령어
 	{
 		crash();
 		printf("유효 X 명령어 \r\n");
 		return 0;
 	}
+
+
 
 	// 다음 space
 	char* next_space_str = telnet_parser::find_space_from_payload(target_name_str, size);
@@ -424,19 +431,18 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	chat_server* server = (chat_server*)sess->get_server();
 	crash_if_false(nullptr != server);
 
+
 	chat_user* target_user = server->get_user(target_name);
-	if (nullptr != target_user)
+	if (nullptr == target_user) // 찾는 유저가 없다면?
 	{
 		// 찾는 상대 유저가 없다는것을 알림.
 		sess->pre_send(not_find_user_msg, sizeof(not_find_user_msg));
 
-		return (end_line_str + 2) - in_buffer;
+		return 0;
 	}
-
 
 	chat_session* target_session = (chat_session*)(target_user->get_session());
 	crash_if_false(nullptr != target_session);
-
 
 	//target_session->parse_send();
 	// space 다음 위치
@@ -449,10 +455,13 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	size_t whisper_msg_size = end_line_str - next_space_str;
 	string whisper_msg{next_space_str, whisper_msg_size};
 
+	whisper_msg = user->get_name() + "님의 귓속말 : " + whisper_msg;
+	whisper_msg += "\r\n";
+	whisper_msg += end_msg;
+
 	target_session->pre_send(whisper_msg.c_str(), whisper_msg.size());
 
-
-	return (end_line_str + 2) - in_buffer;
+	return 2;
 }
 
 size_t telnet_parser::chatting_handler(chat_session* sess, char* in_buffer, size_t size)

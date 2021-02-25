@@ -97,14 +97,20 @@ namespace c2 { namespace server { namespace contents
 		return active_user_table.emplace(user_name, user).second;
 	}
 
-	void chat_server::unregister_user(chat_user * user)
+	void chat_server::unregister_user(chat_user* user)
 	{
+		crash_if_false(nullptr != user);
+		
 		active_user_table.erase(user->get_name());
 	}
 
 	chat_user* chat_server::get_user(const string& name)
 	{
-		return active_user_table[name];
+		chat_user* user = active_user_table[name];
+		
+		crash_if_false(nullptr != user);
+
+		return user;
 	}
 
 	string chat_server::get_active_user_to_string()
