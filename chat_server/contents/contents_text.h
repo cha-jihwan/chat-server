@@ -3,7 +3,7 @@
 // constens에 필요한 문자열 모음.
 namespace c2 { namespace server { namespace contents
 {
-	extern char gui_header[205];
+	extern char gui_header[206];
 	extern char gui_body[201];
 	extern char end_msg[2];
 

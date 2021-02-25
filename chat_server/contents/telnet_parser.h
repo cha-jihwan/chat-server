@@ -13,7 +13,7 @@ public:
 	static void initialize();
 
 private:
-	static char* find_space_from_payload(char* in_buf, size_t in_size);
+	static char* find_character_from_payload(char* in_buf, size_t in_size, char ch);
 	static char* find_enter_from_payload(char* in_buf, size_t in_size);
 	//static char* find_body(char* in_buf, size_t in_size, packet& out_packet);
 	//static char* find_option(char* in_buf, size_t in_size, packet& out_packet);
