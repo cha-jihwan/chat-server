@@ -27,11 +27,9 @@
     <ClInclude Include="contents\chat_session.h" />
     <ClInclude Include="contents\chat_user.h" />
     <ClInclude Include="contents\contents_text.h" />
-    <ClInclude Include="contents\packet_handler.h" />
     <ClInclude Include="contents\telnet_parser.h" />
     <ClInclude Include="core\end_point.h" />
     <ClInclude Include="core\environment.h" />
-    <ClInclude Include="core\object_pool.h" />
     <ClInclude Include="core\object_pool.hpp" />
     <ClInclude Include="core\parser_interface.h" />
     <ClInclude Include="core\payload_buffer.h" />
@@ -42,7 +40,6 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="util\crash.h" />
     <ClInclude Include="util\dump.h" />
-    <ClInclude Include="util\string_view.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="contents\chat_lobby.cpp" />
@@ -52,11 +49,9 @@
     <ClCompile Include="contents\chat_session.cpp" />
     <ClCompile Include="contents\chat_user.cpp" />
     <ClCompile Include="contents\contents_text.cpp" />
-    <ClCompile Include="contents\packet_handler.cpp" />
     <ClCompile Include="contents\telnet_parser.cpp" />
     <ClCompile Include="core\end_point.cpp" />
     <ClCompile Include="core\environment.cpp" />
-    <ClCompile Include="core\object_pool.cpp" />
     <ClCompile Include="core\payload_buffer.cpp" />
     <ClCompile Include="core\protocol.cpp" />
     <ClCompile Include="core\server.cpp" />
@@ -65,7 +60,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="util\crash.cpp" />
     <ClCompile Include="util\dump.cpp" />
-    <ClCompile Include="util\string_view.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EAED6725-827D-4F27-B83A-7150421AE9C2}</ProjectGuid>

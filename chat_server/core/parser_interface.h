@@ -1,3 +1,6 @@
+#pragma once
+
+// 프로젝트 마다 다른 패킷 파서 구현 인터페이스.
 template<typename T>
 class i_parser
 {

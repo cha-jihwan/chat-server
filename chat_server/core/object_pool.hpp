@@ -1,9 +1,10 @@
 #pragma once
 
-//// 만일 스택 할당시 stack 사이즈가 1mb를 넘지 않게 사용해야함.
-//// -> 걍 동적할당 하자.
-//// vector를 stack 처럼 사용.
-//// 최대한 객체간 붙여서 캐시 최적화
+// 객체 크기가 제한된 오브젝트 풀.
+
+// 주의 사항
+// 만일 스택 할당시 stack 사이즈가 1mb가 넘는 상황이 예상시. 동적 할당이 권장된다. 
+// vector를 stack 처럼 사용한다. 객체간 붙여서 캐시 지역성을 고려.
 
 using namespace std;
 template <typename T, size_t N>
@@ -45,13 +46,14 @@ T* bounded_object_pool<T, N>::allocate()
 		return nullptr;
 	}
 
-
 	T* element = pool_container.back();
 
 	pool_container.pop_back();
 
+	// 생성자 호출.
 	new(element) T{};
 
+	// 객체를 반환
 	return element;
 }
 

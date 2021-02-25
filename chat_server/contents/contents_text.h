@@ -1,14 +1,12 @@
 #pragma once
 
-
-
+// constens에 필요한 문자열 모음.
 namespace c2 { namespace server { namespace contents
 {
 	extern char gui_header[205];
 	extern char gui_body[201];
 	extern char end_msg[2];
 
-	// for enter room
 	extern char room_full_msg[62];
 	extern char enter_room_msg[32];
 
@@ -26,9 +24,6 @@ namespace c2 { namespace server { namespace contents
 	extern char leave_room_msg2[22];
 
 	extern char before_login_msg[48];
-	/*const char* login{ "/LOGIN" };
-	const char* a{ "/login" };
-*/
 
 } // namespace contents
 } // namespace server

@@ -243,7 +243,7 @@ namespace c2 { namespace server { namespace core
 			return;
 		}
 ///////////////////////////////
-		register_session(client_sock);
+		register_session_after_allocate(client_sock);
 	}
 
 	void select_server::request_disconnection(session* sess) 
@@ -266,7 +266,7 @@ namespace c2 { namespace server { namespace core
 	}
 
 	// 신규 session 처리 
-	void select_server::register_session(SOCKET connected_sock)
+	void select_server::register_session_after_allocate(SOCKET connected_sock)
 	{
 		session* sess = this->allocate_session();
 		crash_if_false(nullptr != sess);

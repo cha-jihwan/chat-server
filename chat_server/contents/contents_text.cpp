@@ -26,10 +26,6 @@ namespace c2 { namespace server { namespace contents
 
 	char clear_console[73] = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
 
-	//const char* login{ "/LOGIN" };
-	//const char* a{ "/login" };
-
-
 } // namespace contents
 } // namespace server
 } // namespace 

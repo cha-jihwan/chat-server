@@ -58,13 +58,11 @@ namespace c2 { namespace server { namespace core
 		e_session_state				state;
 		string						ip;
 		uint16_t					port;
-		// 유저의 인터페이스 user가 할당된 이후 
+		// 유저의 인터페이스 user가 할당된 이후 사용된다.
 		i_user*						user;
 		// 서버의 인터페이스 주로 세션이 할당된 이후 setter를 통해 의존성 주입.
 		select_server*				server;
 	};
-
-
 
 } // namespace core
 } // namespace server

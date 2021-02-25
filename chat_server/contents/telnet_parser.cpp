@@ -412,7 +412,6 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	}
 
 
-
 	// 다음 space
 	char* next_space_str = telnet_parser::find_space_from_payload(target_name_str, size);
 	if (nullptr == next_space_str) // 유효하지 않은 명령어...  
@@ -426,11 +425,9 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	// string target name 만들기.
 	size_t target_name_size = next_space_str - target_name_str;
 	string target_name{target_name_str, target_name_size};
-
 	
 	chat_server* server = (chat_server*)sess->get_server();
 	crash_if_false(nullptr != server);
-
 
 	chat_user* target_user = server->get_user(target_name);
 	if (nullptr == target_user) // 찾는 유저가 없다면?
@@ -459,6 +456,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	whisper_msg += "\r\n";
 	whisper_msg += end_msg;
 
+	// 전송 요청.
 	target_session->pre_send(whisper_msg.c_str(), whisper_msg.size());
 
 	return 2;

@@ -2,6 +2,7 @@
 
 using namespace c2::server::contents;
 
+
 class telnet_parser : public i_parser<packet>
 {
 	using packet_handler = size_t(*)(chat_session*, char*, size_t);

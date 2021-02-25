@@ -3,7 +3,10 @@
 
 namespace c2 { namespace server { namespace contents 
 {
-	chat_server::chat_server() {}
+	chat_server::chat_server() 
+		: session_pool{}, user_pool{}
+	{}	  
+
 	chat_server::~chat_server()  {}
 
 	bool chat_server::initialize_contents()
