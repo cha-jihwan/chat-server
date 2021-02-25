@@ -19,14 +19,19 @@ namespace c2 { namespace server { namespace core
 		int received_size = recv(sock, (char*)recv_buffer.get_write_buffer(), recv_buffer.get_buffer_size(), NULL);
 		if (received_size == SOCKET_ERROR) 
 		{
-			printf("received_size == socket_error %d\n", GetLastError());
-	
+			LOG("received_size == socket_error %d\n", GetLastError());
+
 			server->request_disconnection(this);
+			
+			return;
 		}
 		else if (received_size == 0) // 끊긴거
 		{
+			LOG("connection closed... \n");
+
 			server->request_disconnection(this);
-			//printf("recv err-no %d\n", GetLastError());
+
+			return;
 		}
 
 		recv_buffer.move_write_head(received_size);
@@ -35,17 +40,8 @@ namespace c2 { namespace server { namespace core
 	
 	// 가상함수... 상속을 통해 session 마다 다르게 처리를 한다.
 	void session::parse_payload()
-	{
-		// example
-		// 전역 packet 큐
-		// static vector<null_packet> packets;
-
-		// packets.clear();
-
-		// size_t parsed_size = i_parser<null_packet>::parse_payload(recv_buffer.get_header(), recv_buffer.get_use_size(), packets);
-	}
+	{}
 	
-
 	void session::send_payload()
 	{
 		int sent_size = send(sock, send_buffer.get_buffer(), send_buffer.get_use_size(), NULL);
@@ -53,6 +49,8 @@ namespace c2 { namespace server { namespace core
 		{
 			// socket error 처리
 			server->request_disconnection(this);
+
+			return;
 		}
 
 		send_buffer.move_read_head(sent_size);

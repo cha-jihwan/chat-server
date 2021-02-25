@@ -6,8 +6,6 @@ int main()
 {
 	using namespace c2::server::contents; // for chat_server
 
-	LOG("hi\n");
-
 	chat_server server;
 
 	server.initialize();
