@@ -27,7 +27,7 @@ namespace c2 { namespace server { namespace contents
 	char before_login_msg[48] = "아직 로그인 되지 않았습니다 로그인 해주세요..\r\n";
 	char already_closed_msg[24] = "이미 종료 되었습니다.\r\n";
 	char laeve_room_msg2[22] = "1방에서 나갔습니다.\r\n";
-	char login_msg[25] = "로그인 성공하였습니다.\r\n";
+	char login_msg[29] = "님 로그인 성공 하셨습니다.\r\n";
 	char create_room_msg[28] = "룸 생성에 성공하였습니다.\r\n";
 	char clear_console[73] = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
 

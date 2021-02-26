@@ -284,6 +284,7 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 
 	printf("%s 유저가 로그인 했습니다.\r\n ", user->get_name().c_str());
 
+	sess->pre_send(user->get_name().c_str(), user->get_name().size());
 	sess->pre_send(login_msg, sizeof(login_msg));
 
 	return 0;

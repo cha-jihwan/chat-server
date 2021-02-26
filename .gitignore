@@ -17,3 +17,6 @@ chat_server/Dump_20210225_012934_1.dmp
 *.lastbuildstate
 *.log
 *.tlog
+*.tlog
+*.tlog
+*.idb
