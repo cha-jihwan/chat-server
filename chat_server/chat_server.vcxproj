@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="circular_buffer.hpp" />
     <ClInclude Include="common\pre_compile.h" />
     <ClInclude Include="contents\chat_lobby.h" />
     <ClInclude Include="contents\chat_room.h" />

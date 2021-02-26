@@ -41,7 +41,6 @@ namespace c2 { namespace server { namespace core
 // 콘텐츠단에서 사용하는 환경 변수
 namespace c2 { namespace server { namespace core
 {
-
 	// contents단에서 상수 변수
 	namespace constant
 	{

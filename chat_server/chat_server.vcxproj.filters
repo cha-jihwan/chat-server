@@ -56,9 +56,6 @@
     <ClInclude Include="core\end_point.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="core\environment.h">
-      <Filter>core</Filter>
-    </ClInclude>
     <ClInclude Include="core\object_pool.hpp">
       <Filter>core</Filter>
     </ClInclude>
@@ -92,6 +89,12 @@
     <ClInclude Include="util\log.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="core\environment.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="circular_buffer.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="contents\chat_lobby.cpp">
@@ -116,9 +119,6 @@
       <Filter>contents</Filter>
     </ClCompile>
     <ClCompile Include="core\end_point.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\environment.cpp">
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="core\payload_buffer.cpp">
@@ -150,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="util\log.cpp">
       <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="core\environment.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

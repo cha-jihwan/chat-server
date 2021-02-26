@@ -3,10 +3,12 @@
 // constens에 필요한 문자열 모음.
 namespace c2 { namespace server { namespace contents
 {
+	// server gui
 	extern char gui_header[206];
 	extern char gui_body[202];
 	extern char end_msg[2];
 	
+	//
 	extern char already_closed_msg[24];
 	extern char before_login_msg[48];
 	extern char blank_id_msg[63];
