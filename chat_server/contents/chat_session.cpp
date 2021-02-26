@@ -15,6 +15,10 @@ namespace c2 { namespace server { namespace contents
 		
 		recv_buffer.rewind();
 	}
+	bool chat_session::is_logined()
+	{
+		return get_state() >= e_session_state::LOGINED;
+	}
 } // namespace core
 } // namespace server
 } // namespace c2

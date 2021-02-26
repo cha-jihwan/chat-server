@@ -303,7 +303,7 @@ namespace c2 { namespace server { namespace core
 
 		// 로그인 상태라면?
 		// user 반납.
-		if (e_session_state::LOGINED >= sess->get_state())
+		if (e_session_state::LOGINED <= sess->get_state())
 		{
 			chat_user* user = (chat_user*)sess->get_user();
 
