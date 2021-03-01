@@ -77,7 +77,6 @@ size_t telnet_parser::parse_payload(c2::server::contents::chat_session* in_sessi
 		}
 
 
-
 		// cmd 이후 \r\n 이전 부분을 handler에서 처리..
 		size_t returned_handling_size{};
 		if (1 <= packet_handlers.count(cmd))
@@ -244,7 +243,7 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 		
 		crash_if_false(nullptr != user);
 
-		LOG("이미 로그인한 유저 %s님이 재 로그인 시도중입니다.\r\n", user->get_name().c_str());
+		LOG("로그인 실패 이미 로그인한 유저 %s님이 재 로그인 시도중입니다.\r\n", user->get_name().c_str());
 
 		return 0;
 	}

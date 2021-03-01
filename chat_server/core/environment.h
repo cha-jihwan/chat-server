@@ -8,8 +8,8 @@ namespace c2 { namespace server { namespace core
 	{
 		extern const char*		c_ip;//{ "127.0.0.1" };
 		constexpr uint16_t		c_port			{ 5500 };
-		constexpr size_t		c_maximum_ccu	{ 4 };//{ 64 };
-		constexpr size_t		c_maximum_size	{ 4 };
+		constexpr size_t		c_maximum_ccu	{ 10 };//{ 64 };
+		constexpr size_t		c_maximum_size	{ 10 };
 	} // namespace constant
 
 	// core단에서 전역 변수

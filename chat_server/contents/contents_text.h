@@ -11,13 +11,13 @@ namespace c2 { namespace server { namespace contents
 	//
 	extern char already_closed_msg[24];
 	extern char before_login_msg[48];
-	extern char blank_id_msg[63];
+	extern char blank_id_msg[75];
 	extern char create_room_msg[28];
 	extern char enter_room_msg[21];
 	extern char overlapped_login_msg[32];
 	
 	extern char invalid_cmd_msg[31];
-	extern char kick_message[58];
+	extern char kick_message[56];
 	extern char login_msg[29];
 	extern char leave_user_from_room_msg[35];
 	extern char leave_room_msg[21];
