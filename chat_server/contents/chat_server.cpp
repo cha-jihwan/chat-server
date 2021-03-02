@@ -91,10 +91,10 @@ namespace c2 { namespace server { namespace contents
 
 		printf("%s:%d session established....\r\n", sess->get_ip().c_str(), sess->get_port());
 
-		sess->pre_send(gui_header, sizeof(gui_header));
-		sess->pre_send(end_msg, 2);
-		sess->pre_send(gui_body, sizeof(gui_body));
-		sess->pre_send(end_msg, 2);
+		sess->pre_send(gui_header.c_str(), gui_header.size());
+		sess->pre_send(end_msg.c_str(), end_msg.size());
+		sess->pre_send(gui_body.c_str(), gui_body.size());
+		sess->pre_send(end_msg.c_str(), end_msg.size());
 	}
 
 	void chat_server::on_disconnect(session* sess)
@@ -137,12 +137,12 @@ namespace c2 { namespace server { namespace contents
 
 	string chat_server::get_active_user_to_string()
 	{
-		string active_user_list;
+		string active_user_list = packet_filter_keywords[(size_t)e_packet_filter::EPF_SELECT_USER_LIST];
 
 		for (auto& kv : active_user_table)
 		{
 			active_user_list += kv.first;
-			active_user_list += "\r\n";
+			active_user_list += "¥‘.\r\n";
 		}
 
 		return std::move(active_user_list);
@@ -170,7 +170,7 @@ namespace c2 { namespace server { namespace contents
 				while(true == to_kick_sockes->try_pop(sock))
 				{
 					// send ¿Ã»ƒ 
-					if (sizeof(kick_message) != send(sock, kick_message, sizeof(kick_message), NULL))
+					if (sizeof(kick_message) != send(sock, kick_message.c_str(), kick_message.size(), NULL))
 					{
 						LOG("sent size err-no : %d \r\n", GetLastError());
 					}

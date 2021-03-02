@@ -49,7 +49,7 @@ size_t telnet_parser::parse_payload(c2::server::contents::chat_session* in_sessi
 
 		if (nullptr == cmd_first_char)
 		{
-			in_session->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+			in_session->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 
 			parsed_size += current_cmd_size;
 
@@ -61,7 +61,7 @@ size_t telnet_parser::parse_payload(c2::server::contents::chat_session* in_sessi
 		int64_t cmd_size = (size_t)carage_return - (size_t)cmd_first_char;
 		if (2 >cmd_size) // 최소 case 1이상은 되야 하니
 		{
-			in_session->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+			in_session->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 			
 			parsed_size += current_cmd_size;
 
@@ -85,7 +85,7 @@ size_t telnet_parser::parse_payload(c2::server::contents::chat_session* in_sessi
 		}
 		else
 		{
-			in_session->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+			in_session->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 		}
 
 		parsed_size += current_cmd_size;
@@ -143,7 +143,7 @@ bool telnet_parser::is_logined(chat_session* sess, char* fmt)
 	{
 		LOG(fmt);
 
-		sess->pre_send(request_login_msg, sizeof(request_login_msg));
+		sess->pre_send(request_login_msg.c_str(), request_login_msg.size());
 
 		return false;
 	}
@@ -251,7 +251,7 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 	// 1이면 공백만 있는 것.
 	if (size <= 1)
 	{
-		sess->pre_send(request_id_msg, sizeof(request_id_msg));
+		sess->pre_send(request_id_msg.c_str(), request_id_msg.size());
 
 		return 0;
 	}
@@ -264,7 +264,7 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 	string user_name {id_str, (size_t)name_size};
 	if (string::npos != user_name.find(' ')) // 중간에 공백 포함된 경우.
 	{
-		sess->pre_send(blank_id_msg, sizeof(blank_id_msg));
+		sess->pre_send(blank_id_msg.c_str(), blank_id_msg.size());
 
 		return 0;
 	}
@@ -284,7 +284,7 @@ size_t telnet_parser::login_handler(chat_session* sess, char* in_buffer, size_t 
 	printf("%s 유저가 로그인 했습니다.\r\n ", user->get_name().c_str());
 
 	sess->pre_send(user->get_name().c_str(), user->get_name().size());
-	sess->pre_send(login_msg, sizeof(login_msg));
+	sess->pre_send(login_msg.c_str(), login_msg.size());
 
 	return 0;
 }
@@ -323,7 +323,7 @@ size_t telnet_parser::create_room_handler(chat_session* sess, char* in_buffer, s
 		// 안내 메시지 출력.
 		printf("방 생성을 더 이상 할 수 없습니다.\r\n", room_name.c_str() );
 		
-		sess->pre_send(room_full_msg, sizeof(room_full_msg));
+		sess->pre_send(room_full_msg.c_str(), room_full_msg.size());
 	}
 	else // 방 접속 가능시...
 	{
@@ -336,7 +336,7 @@ size_t telnet_parser::create_room_handler(chat_session* sess, char* in_buffer, s
 		user->enter_room(room_name);
 
 		// 안내 메시지 출력
-		sess->pre_send(create_room_msg, sizeof(create_room_msg));
+		sess->pre_send(create_room_msg.c_str(), create_room_msg.size());
 	}
 	
 	return 0;
@@ -365,7 +365,7 @@ size_t telnet_parser::enter_room_handler(chat_session* sess, char* in_buffer, si
 	chat_room* room = g_room_manager->find_room_using_name(room_name);
 	if (nullptr == room) // 찾는 방이 없는 경우.
 	{
-		sess->pre_send(not_find_room_msg, sizeof(not_find_room_msg)); // 안내 메시지 출력.
+		sess->pre_send(not_find_room_msg.c_str(), not_find_room_msg.size()); // 안내 메시지 출력.
 	}
 	else // 방 접속 가능시...
 	{
@@ -376,7 +376,7 @@ size_t telnet_parser::enter_room_handler(chat_session* sess, char* in_buffer, si
 		user->enter_room(room_name);
 
 		// 안내 메시지 출력
-		sess->pre_send(enter_room_msg, sizeof(enter_room_msg));
+		sess->pre_send(enter_room_msg.c_str(), enter_room_msg.size());
 	}
 
 	return 0;
@@ -399,11 +399,11 @@ size_t telnet_parser::leave_room_handler(chat_session* sess, char* in_buffer, si
 
 	if (e_user_state::US_IN_ROOM != user->get_state()) // 내가 방에 없는 경우...
 	{
-		sess->pre_send(not_in_room_msg, sizeof(not_in_room_msg)); // 안내 메시지 출력.
+		sess->pre_send(not_in_room_msg.c_str(), not_in_room_msg.size()); // 안내 메시지 출력.
 	}
 	else // 내가 방에 있는 경우...
 	{
-		sess->pre_send(leave_user_from_room_msg, sizeof(leave_user_from_room_msg)); // 안내 메시지 출력.
+		sess->pre_send(leave_user_from_room_msg.c_str(), leave_user_from_room_msg.size()); // 안내 메시지 출력.
 		user->leave_room();
 	}
 	
@@ -427,9 +427,9 @@ size_t telnet_parser::select_rooms_handler(chat_session* sess, char* in_buffer, 
 
 	// 방 리스트...
 	string&& active_room_list = g_room_manager->get_active_room_list_to_string();
-	if (active_room_list == "")
+	if (active_room_list == packet_filter_keywords[(size_t)e_packet_filter::EPF_SELECT_ROOM_LIST])
 	{
-		active_room_list = "현재 생성된 방이 없습니다.\r\n";
+		active_room_list += "현재 생성된 방이 없습니다.\r\n";
 	}
 
 	sess->pre_send(active_room_list.c_str(), active_room_list.size()); // 안내 메시지 출력.
@@ -462,7 +462,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	{
 		LOG("target_name == nullptr\n");
 
-		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+		sess->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 
 		return 0;
 	}
@@ -481,7 +481,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	{
 		LOG("target_name == nullptr\n");
 
-		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+		sess->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 
 		return 0;
 	}
@@ -499,7 +499,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	{
 		LOG("%s님이 찾는 유저 %s님이 없습니다.", user->get_name().c_str(), target_name.c_str());
 		// 찾는 상대 유저가 없다는것을 알림.
-		sess->pre_send(not_find_user_msg, sizeof(not_find_user_msg));
+		sess->pre_send(not_find_user_msg.c_str(), not_find_user_msg.size());
 
 		return 0;
 	}
@@ -519,7 +519,7 @@ size_t telnet_parser::whisper_handler(chat_session* sess, char* in_buffer, size_
 	{
 		LOG("msg_str == nullptr\n");
 
-		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+		sess->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 
 		return 0;
 	}
@@ -552,14 +552,14 @@ size_t telnet_parser::chatting_handler(chat_session* sess, char* in_buffer, size
 	char* msg_str = in_buffer;
 	if (' ' != *msg_str && '\r' != *msg_str)
 	{
-		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+		sess->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 		return 0;
 	}
 
 	msg_str = &in_buffer[1];
 	if ((size_t)msg_str > (size_t)slash_r_str)
 	{
-		sess->pre_send(invalid_cmd_msg, sizeof(invalid_cmd_msg));
+		sess->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
 		return 0;
 	}
 
@@ -571,17 +571,17 @@ size_t telnet_parser::chatting_handler(chat_session* sess, char* in_buffer, size
 	chat_user* user = reinterpret_cast<chat_user*>(sess->get_user());
 	if (nullptr == user)
 	{
-		sess->pre_send(before_login_msg, sizeof(before_login_msg));
+		sess->pre_send(before_login_msg.c_str(), before_login_msg.size());
 		return 0;
 	}
 
-	msg = user->get_name() + " : " + msg + "\r\n";
+	msg = user->get_name() + "님의 채팅 : " + msg + "\r\n";
 
 	switch (user->get_state())
 	{
 		case e_user_state::US_NONE:
 		{
-			sess->pre_send(before_login_msg, sizeof(before_login_msg));
+			sess->pre_send(before_login_msg.c_str(), before_login_msg.size());
 			break;
 		}
 
@@ -641,7 +641,7 @@ size_t telnet_parser::select_user_in_room_handler(chat_session* sess, char* in_b
 
 	if (e_user_state::US_IN_ROOM != user->get_state()) // 내가 방에 없는 경우...
 	{
-		sess->pre_send(not_in_room_msg, sizeof(not_in_room_msg)); // 안내 메시지 출력.
+		sess->pre_send(not_in_room_msg.c_str(), not_in_room_msg.size()); // 안내 메시지 출력.
 	}
 	else // 내가 방에 있는 경우...
 	{
@@ -669,15 +669,14 @@ size_t telnet_parser::select_all_handler(chat_session* sess, char* in_buffer, si
 		return 0;
 	}
 
-
 	chat_server* server = (chat_server*)sess->get_server();
 	crash_if_false(nullptr != server);
 
 	string all_user_list = server->get_active_user_to_string();
-	if (all_user_list == "")
+	if (all_user_list == "전체 유저 목록") // 나 하나쯤은 있겠지... 당연히..
 	{
 		// 나까지 로그인 안한 상태...
-		all_user_list = "현재 유저가 없습니다.\r\n";
+		all_user_list = "현재 유저가 없습니다.";
 	}
 
 	sess->pre_send(all_user_list.c_str(), all_user_list.size()); // 안내 메시지 출력.

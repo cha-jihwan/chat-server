@@ -36,7 +36,7 @@ public:
 			fit_size = size;
 		}
 
-		memcpy(dest, &this->buffer[this->read_head], fit_size);
+		memmove(dest, &this->buffer[this->read_head], fit_size);
 
 		this->read_head += fit_size;
 
@@ -47,12 +47,12 @@ public:
 	size_t write(void* src, size_t size)
 	{
 		// check
-		if (this->write_head + size > N)
+		if (write_head + size > N)
 		{
 			crash(); // 완성된 패킷이 없다는건 말이 안됨.
 		}
 
-		memcpy(&this->buffer[this->write_head], src, size);
+		memmove(&buffer[write_head], src, size);
 
 		this->write_head += size;
 
@@ -75,7 +75,7 @@ public:
 			fit_size = size;
 		}
 
-		memcpy(dest, &this->buffer[this->read_head], fit_size);
+		memmove(dest, &this->buffer[this->read_head], fit_size);
 
 		return fit_size;
 	}
