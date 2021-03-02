@@ -41,12 +41,12 @@ namespace c2 { namespace server { namespace contents
 		"로그인 성공\r\n",
 		"방 생성 성공\r\n",
 		"방 탈출 성공\r\n",
-		"방 참가 성공",
+		"방 참가 성공\r\n",
 		"님의 채팅 : ",
 		"님의 귓속말 : ",
 		"전체 방 목록\r\n",
 		"전체 유저 목록\r\n",
-		"방 참여 유저 목록",
+		"방 참여 유저 목록\r\n",
 	};
 
 } // namespace contents

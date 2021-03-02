@@ -17,7 +17,7 @@ namespace c2 { namespace server { namespace contents
 
 	string chat_room::get_user_list_in_room_to_string()
 	{
-		string user_list;
+		string user_list = packet_filter_keywords[(size_t)e_packet_filter::EPF_SELECT_USER_LIST_IN_ROOM];
 
 		for (const auto& kv : user_table)
 		{
