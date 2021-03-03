@@ -40,7 +40,6 @@ size_t telnet_parser::parse_payload(c2::server::contents::chat_session* in_sessi
 			crash();
 		}
 
-
 		// find 이상한 문자 뛰어 넘기 '/'
 		// cmd_first_char  ==  /
 		char* cmd_first_char = telnet_parser::find_character_from_payload(cmd_start, current_cmd_size, '/');
@@ -405,6 +404,7 @@ size_t telnet_parser::leave_room_handler(chat_session* sess, char* in_buffer, si
 	{
 		sess->pre_send(leave_user_from_room_msg.c_str(), leave_user_from_room_msg.size()); // 안내 메시지 출력.
 		user->leave_room();
+		user->enter_lobby();
 	}
 	
 	return 0;

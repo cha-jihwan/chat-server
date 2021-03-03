@@ -101,9 +101,9 @@ namespace c2 { namespace server { namespace contents
 	{
 		crash_if_false(nullptr != sess);
 
-		printf("%s:%d session logout....\r\n", sess->get_ip().c_str(), sess->get_port());
+		LOG("%s:%d session logout....\r\n", sess->get_ip().c_str(), sess->get_port());
 
-		// 蜡历 辆丰 贸府.
+		// 技记 辆丰 贸府.
 		e_session_state state = sess->get_state();
 		if (e_session_state::LOGINED <= state)
 		{
@@ -111,6 +111,26 @@ namespace c2 { namespace server { namespace contents
 			crash_if_false(nullptr != user);
 			unregister_user(user);
 		}
+
+		chat_user* user = (chat_user*)sess->get_user();
+		if (nullptr == user)
+		{
+			return;
+		}
+
+		switch (user->get_state())
+		{
+			case e_user_state::US_IN_LOBBY: 
+				user->leave_lobby();
+				break;
+
+			case e_user_state::US_IN_ROOM: 
+				user->leave_room();
+				break;
+		}
+
+		// 蜡历 力芭
+		//free_user(user);
 	}
 
 	bool chat_server::register_user(const string& user_name, chat_user* user)

@@ -301,6 +301,8 @@ namespace c2 { namespace server { namespace core
 	{
 		crash_if_false(nullptr != sess);
 
+		on_disconnect(sess);
+
 		// 로그인 상태라면?
 		// user 반납.
 		if (e_session_state::LOGINED <= sess->get_state())
@@ -313,8 +315,6 @@ namespace c2 { namespace server { namespace core
 		}
 
 		sess->set_state(e_session_state::CLOSED);
-		
-		on_disconnect(sess);
 
 		sock_matching_table.erase(sess->get_socket());
 

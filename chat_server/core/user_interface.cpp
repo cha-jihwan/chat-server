@@ -23,6 +23,7 @@ namespace c2 { namespace server { namespace core
 	void i_user::update_logic()
 	{}
 
+
 } // namespace core
 } // namespace server
 } // namespace c2

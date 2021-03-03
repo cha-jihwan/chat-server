@@ -4,7 +4,10 @@ namespace c2 { namespace server { namespace contents
 {
 	chat_user::chat_user() : room{}, state{e_user_state::US_NONE}
 	{}
-	chat_user::~chat_user() {}
+
+	chat_user::~chat_user() 
+	{
+	}
 	
 	
 	void chat_user::update_logic()
@@ -33,10 +36,6 @@ namespace c2 { namespace server { namespace contents
 		{
 			g_room_manager->free(room);
 		}
-
-		// 肺厚 立加 贸府
-		g_lobby->accept_user(this);
-		state = e_user_state::US_IN_LOBBY;
 	}
 
 	void chat_user::enter_lobby()
