@@ -17,12 +17,12 @@ namespace c2 { namespace server { namespace contents
 
 	string chat_room::get_user_list_in_room_to_string()
 	{
-		string user_list = packet_filter_keywords[(size_t)e_packet_filter::EPF_SELECT_USER_LIST_IN_ROOM];
+		string user_list = "";
 
 		for (const auto& kv : user_table)
 		{
 			user_list += kv.first;
-			user_list += "\r\n";
+			user_list += "ดิ.\r\n";
 		}
 
 		return std::move(user_list);

@@ -304,8 +304,16 @@ size_t telnet_parser::create_room_handler(chat_session* sess, char* in_buffer, s
 	size -= 1;
 
 	// room name 정보.
-	size_t	room_name_size = (size_t)&room_name_str[size] - (size_t)room_name_str;
-	string	room_name{ room_name_str, room_name_size };
+	int		room_name_size = (int)&room_name_str[size] - (int)room_name_str;
+	if (1 > room_name_size)
+	{
+		sess->pre_send(invalid_cmd_msg.c_str(), invalid_cmd_msg.size());
+		LOG("룸 생성 실패 사유 : 방 이름");
+		return 0;
+	}
+
+	
+	string	room_name(room_name_str, room_name_size);
 
 	//// user_name 중가에 space 들어가면
 	//if (string::npos != room_name.find(' '))
@@ -375,7 +383,7 @@ size_t telnet_parser::enter_room_handler(chat_session* sess, char* in_buffer, si
 		user->enter_room(room_name);
 
 		// 안내 메시지 출력
-		sess->pre_send(enter_room_msg.c_str(), enter_room_msg.size());
+		sess->pre_send(packet_filter_keywords[(size_t)e_packet_filter::EPF_ROOM_ENTERING_OK].c_str(), packet_filter_keywords[(size_t)e_packet_filter::EPF_ROOM_ENTERING_OK].size()); // 안내 메시지 출력.
 	}
 
 	return 0;
@@ -390,11 +398,9 @@ size_t telnet_parser::leave_room_handler(chat_session* sess, char* in_buffer, si
 		return 0;
 	}
 
-
 	// user 획득
 	chat_user* user = (chat_user*)sess->get_user();
 	crash_if_false(nullptr != user);
-
 
 	if (e_user_state::US_IN_ROOM != user->get_state()) // 내가 방에 없는 경우...
 	{
@@ -402,7 +408,7 @@ size_t telnet_parser::leave_room_handler(chat_session* sess, char* in_buffer, si
 	}
 	else // 내가 방에 있는 경우...
 	{
-		sess->pre_send(leave_user_from_room_msg.c_str(), leave_user_from_room_msg.size()); // 안내 메시지 출력.
+		sess->pre_send(packet_filter_keywords[(size_t)e_packet_filter::EPF_ROOM_EXITING_OK].c_str(), packet_filter_keywords[(size_t)e_packet_filter::EPF_ROOM_EXITING_OK].size()); // 안내 메시지 출력.
 		user->leave_room();
 		user->enter_lobby();
 	}
@@ -636,7 +642,7 @@ size_t telnet_parser::select_user_in_room_handler(chat_session* sess, char* in_b
 	// user를 구하고...
 	chat_user* user = (chat_user*)sess->get_user();
 	crash_if_false(nullptr != user);
-	chat_room* room = (chat_room*)(user->get_room());
+	chat_room* room = (chat_room*)user->get_room();
 	crash_if_false(nullptr != room);
 
 	if (e_user_state::US_IN_ROOM != user->get_state()) // 내가 방에 없는 경우...
@@ -645,13 +651,16 @@ size_t telnet_parser::select_user_in_room_handler(chat_session* sess, char* in_b
 	}
 	else // 내가 방에 있는 경우...
 	{
-		// 방 리스트를 string객체로 획득.
+		sess->pre_send(packet_filter_keywords[(size_t)e_packet_filter::EPF_SELECT_USER_LIST_IN_ROOM].c_str(),
+			packet_filter_keywords[(size_t)e_packet_filter::EPF_SELECT_USER_LIST_IN_ROOM].size());
+		
+// 방 리스트를 string객체로 획득.
 		string user_list_in_room = room->get_user_list_in_room_to_string(); // 
 		if (user_list_in_room == "")
 		{
 			user_list_in_room = "현재 방에 유저가 없습니다.\r\n";
 		}
-		user_list_in_room += "\0\0";
+		//user_list_in_room += "\0\0";
 		sess->pre_send(user_list_in_room.c_str(), user_list_in_room.size()); // 안내 메시지 출력.
 	}
 
