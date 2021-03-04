@@ -1,1 +1,14 @@
-﻿  chat_server.vcxproj -> C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\x64\Debug\chat_server.exe
+﻿  telnet_parser.cpp
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\core\object_pool.hpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(12,139): warning C4100: 'out_buffer': 참조되지 않은 정식 매개 변수입니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(307,50): warning C4311: '형식 캐스트': 'char *'에서 'int'(으)로 포인터가 잘립니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(307,50): warning C4302: '형식 캐스트': 'char *'에서 'int'(으)로 잘립니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(307,70): warning C4311: '형식 캐스트': 'char *'에서 'int'(으)로 포인터가 잘립니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(307,70): warning C4302: '형식 캐스트': 'char *'에서 'int'(으)로 잘립니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(331,79): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(331,79): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(365,8): warning C4189: 'end_line_str': 지역 변수가 초기화되었으나 참조되지 않았습니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(392,86): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(421,88): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\chat_server\contents\telnet_parser.cpp(672,86): warning C4100: 'size': 참조되지 않은 정식 매개 변수입니다.
+  chat_server.vcxproj -> C:\Users\jihwan.cha\Documents\GitHub\chat\chat-server\x64\Debug\chat_server.exe
